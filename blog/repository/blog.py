@@ -32,14 +32,17 @@ def delete_by_id(id , db : Session):
     db.commit() 
     return ({'msg' : 'content deleted'})
 
-def updated_by_id(id , request:BLog2 , db : Session):
-    blog = db.query(models.Blog).filter(models.Blog.id == id).first()
-    if not blog:
+def updated_by_id(id:int , request:BLog2 , db : Session):
+    blog = db.query(models.Blog).filter(models.Blog.id == id).update(
+        {
+            "title": request.title,
+            "body": request.body
+        },
+        synchronize_session=False
+    )
+    if blog == 0:
        raise HTTPException(status_code= status.HTTP_404_NOT_FOUND, 
                            detail= f"Blog with {id} did not exists")
     
-    blog.title = request.title 
-    blog.body = request.body
-    #blog.update(request)
     db.commit() 
     return ({'msg' : 'content updated'})
