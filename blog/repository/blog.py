@@ -1,13 +1,11 @@
 from  sqlalchemy.orm import Session  
 from .. import models
-from ..schemas import BLog2 , User2 , showBlog , showUser
+from ..schemas import BLog2 , User2 , showBlog , showUser , BLogPatch
 from fastapi import  status , Response , HTTPException , APIRouter
 
 def get_all(db : Session):
     return  db.query(models.Blog).all() 
     
-def me(db:Session , id:int):
-    return db.query(models.User).filter(models.User.id == id).first()
 
 def get_by_id(id , db : Session):
     blog = db.query(models.Blog).filter(models.Blog.id==id).first()
@@ -45,4 +43,19 @@ def updated_by_id(id:int , request:BLog2 , db : Session):
                            detail= f"Blog with {id} did not exists")
     
     db.commit() 
+    return ({'msg' : 'content updated'})
+
+def updatedPartiali_by_id(id:int , request:BLogPatch , db : Session):
+    blog = db.query(models.Blog).filter(models.Blog.id == id).first()
+    if not blog:
+       raise HTTPException(status_code= status.HTTP_404_NOT_FOUND, 
+                           detail= f"Blog with {id} did not exists")
+    if request.title is not None:
+        blog.title = request.title
+
+    if request.body is not None:
+        blog.body = request.body
+    
+    db.commit()
+    db.refresh(blog)
     return ({'msg' : 'content updated'})

@@ -20,6 +20,12 @@ class BLog2(BaseModel):
     title : str 
     body : str 
 
+    
+class BLogPatch(BaseModel):
+    title : Optional[str] = None 
+    body : Optional[str] = None 
+
+
 class showBlog(BaseModel):
     title : str 
     body : str 
