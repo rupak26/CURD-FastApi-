@@ -1,6 +1,6 @@
 from  sqlalchemy.orm import Session  
-from .. import models
-from ..schemas import BLog2 , User2 , showBlog , showUser , BLogPatch
+from ..domain import models
+from ..domain.schemas import BLog2 , User2 , showBlog , showUser , BLogPatch
 from fastapi import  status , Response , HTTPException , APIRouter
 
 def get_all(db : Session):

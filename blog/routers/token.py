@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta, timezone
 import email
-from ..schemas import TokenData
-from .. import models
+from ..domain.schemas import TokenData
+from ..domain import models
 from ..Database import get_db
 from fastapi import Depends , HTTPException
 from  sqlalchemy.orm import Session  

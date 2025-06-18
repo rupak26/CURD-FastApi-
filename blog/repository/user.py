@@ -1,17 +1,28 @@
-from .. import models
+from ..domain import models
 from sqlalchemy.orm import Session 
-from ..schemas import  User2 ,  showUser
+from ..domain.schemas import  User2 ,  showUser
 from ..hasing import Hasing
 from fastapi import HTTPException , status
+from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
-
-def create_user(request:User2, db:Session):
-    new_user = models.User(username = request.username,email=request.email,password=Hasing.hashPassword(request.password))
-    db.add(new_user) 
-    db.commit() 
+    
+def create_user(request: User2, db: Session):
+    users = db.query(models.User).filter(models.User.username == request.username).first() 
+    if users:
+        return {"User already exist"}
+    new_user = models.User(
+        username=request.username,
+        email=request.email,
+        password=Hasing.hashPassword(request.password)
+    )
+    db.add(new_user)
+    db.commit()
     db.refresh(new_user)
-    return new_user
-
+    return {
+        "userName": new_user.username,
+        "email": new_user.email
+    }
+    
 def show_all_user(db : Session):
     return db.query(models.User).all() 
 

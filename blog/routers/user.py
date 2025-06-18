@@ -1,6 +1,6 @@
-from ..schemas import BLog2 , User2 , showBlog , showUser
+from ..domain.schemas import BLog2 , User2 , showBlog , showUser
 from ..Database import get_db
-from .. import models
+from ..domain import models
 from fastapi import Depends, FastAPI , status , Response , HTTPException , APIRouter
 from sqlalchemy.orm import Session  
 from ..hasing import Hasing
@@ -13,8 +13,8 @@ router = APIRouter(
 ) 
 
 @router.post('/', status_code=status.HTTP_201_CREATED)
-def create_user(request:User2 , db : Session = Depends(get_db)):
-    return user.create_user(request , db)
+def create_user_route(request: User2, db: Session = Depends(get_db)):
+    return user.create_user(request, db)
 
 @router.get('/',status_code=status.HTTP_202_ACCEPTED ,  response_model=List[showUser])
 def show_user(db : Session = Depends(get_db)):

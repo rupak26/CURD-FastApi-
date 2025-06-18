@@ -1,8 +1,8 @@
 from ast import mod
 from datetime import datetime, timedelta, timezone
 from fastapi import APIRouter , Depends , HTTPException , status
-from ..schemas import Login , Token
-from .. import models
+from ..domain.schemas import Login , Token
+from ..domain import models
 from sqlalchemy.orm import Session 
 from ..Database import get_db 
 from ..hasing import Hasing

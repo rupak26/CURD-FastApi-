@@ -1,6 +1,6 @@
 from fastapi import Depends, FastAPI , status , Response , HTTPException , APIRouter
-from ..schemas import BLog2 , User2 , showBlog , showUser , BLogPatch
-from .. import models
+from ..domain.schemas import BLog2 , User2 , showBlog , showUser , BLogPatch
+from ..domain import models
 from ..Database import engine , SessionLocal , get_db
 from ..hasing import Hasing
 from  sqlalchemy.orm import Session  
