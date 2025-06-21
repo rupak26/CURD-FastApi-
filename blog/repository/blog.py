@@ -20,7 +20,9 @@ async def create(request:BLog2 , db : Session , id : int):
     db.add(new_blog)
     db.commit()
     db.refresh(new_blog)
-    await manager.broadcast(f"New blog created: {new_blog.title}")
+    pid = new_blog.user_id
+    user = db.query(models.User).filter(models.User.id==id).first()
+    await manager.broadcast(f"New blog created by {user.username} titled {new_blog.title}")
     return new_blog
 
 def delete_by_id(id , db : Session):

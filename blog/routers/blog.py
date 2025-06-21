@@ -13,29 +13,55 @@ router = APIRouter(
     tags=['Blogs']
 )
 
-@router.post('/' , status_code= status.HTTP_201_CREATED)
+@router.post('/' ,
+              summary="Create new blog",
+              description='''
+              Create New Blog 
+              ''',
+              status_code= status.HTTP_201_CREATED)
 async def create(request:BLog2 , db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
     return await blog.create(request , db ,  get_current_user)
 
 # Customize request_model via using response schema 
-@router.get('/' , status_code= status.HTTP_200_OK, response_model = List[showBlog])
+@router.get('/' ,
+            summary="Get all Blog",
+            description='''
+            Get all Blogs from Database
+            ''',
+            status_code= status.HTTP_200_OK, response_model = List[showBlog])
 def details(db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
     return blog.get_all(db)
 
 
-@router.get('/{id}' , status_code= status.HTTP_200_OK)
+@router.get('/{id}' ,
+            summary="Get individual Blog via Id",
+            description='''
+            Get individual Blog via Id 
+            ''',
+            status_code= status.HTTP_200_OK)
 def details_by_id(id , db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
     return blog.get_by_id(id , db)
 
-@router.delete('/{id}' , status_code=status.HTTP_200_OK)
+@router.delete('/{id}' ,
+               summary="Delete Blog via Id",
+               description='''Delete the blog of this id''' ,
+               status_code=status.HTTP_200_OK)
 def distroy_by_id(id , db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
     return blog.delete_by_id(id,db)
 
 
-@router.put('/{id}', status_code=status.HTTP_202_ACCEPTED)
+@router.put('/{id}', 
+            summary="Update Blog via Id" ,
+            description='''
+            Logged User can update the blog of this id
+            ''',status_code=status.HTTP_202_ACCEPTED)
 def update_by_id(request:BLog2 , id:int ,  db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
     return blog.updated_by_id(id , request , db)
 
-@router.patch('/{id}',status_code=status.HTTP_202_ACCEPTED)
+@router.patch('/{id}',
+              summary="Update Blog partiali via id",
+              description='''
+               Logged User can partiali update the blog of this id
+              ''',status_code=status.HTTP_202_ACCEPTED)
 def update_Partiali_by_id(request:BLogPatch , id:int , db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
     return blog.updatedPartiali_by_id(id , request  , db)

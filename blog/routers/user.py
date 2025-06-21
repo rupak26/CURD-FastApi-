@@ -12,15 +12,30 @@ router = APIRouter(
     tags=['User'] 
 ) 
 
-@router.post('/', status_code=status.HTTP_201_CREATED)
+@router.post('/', 
+             summary="Create new user"  , 
+             description='''
+             Create New Users
+             ''',
+             status_code=status.HTTP_201_CREATED)
 def create_user_route(request: User2, db: Session = Depends(get_db)):
     return user.create_user(request, db)
 
-@router.get('/',status_code=status.HTTP_202_ACCEPTED ,  response_model=List[showUser])
+@router.get('/',
+            summary="Get all user",
+            description='''
+            Get all users
+            ''',
+            status_code=status.HTTP_202_ACCEPTED ,  response_model=List[showUser])
 def show_user(db : Session = Depends(get_db)):
     return user.show_all_user(db)
 
-@router.get('/{id}',status_code=status.HTTP_202_ACCEPTED ,  response_model=showUser)
+@router.get('/{id}',
+            summary="Get individul user",
+            description='''
+            Get individul user based upon their id
+            ''',
+            status_code=status.HTTP_202_ACCEPTED ,  response_model=showUser)
 def show_user(id:int , db : Session = Depends(get_db)):
     return user.show_user_by_id(id , db)
 
