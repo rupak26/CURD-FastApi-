@@ -14,8 +14,8 @@ router = APIRouter(
 )
 
 @router.post('/' , status_code= status.HTTP_201_CREATED)
-def create(request:BLog2 , db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
-    return blog.create(request , db ,  get_current_user)
+async def create(request:BLog2 , db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
+    return await blog.create(request , db ,  get_current_user)
 
 # Customize request_model via using response schema 
 @router.get('/' , status_code= status.HTTP_200_OK, response_model = List[showBlog])

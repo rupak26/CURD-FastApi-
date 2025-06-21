@@ -2,6 +2,7 @@ from  sqlalchemy.orm import Session
 from ..domain import models
 from ..domain.schemas import BLog2 , User2 , showBlog , showUser , BLogPatch
 from fastapi import  status , Response , HTTPException , APIRouter
+from ..socket.configuration import manager
 
 def get_all(db : Session):
     return  db.query(models.Blog).all() 
@@ -14,11 +15,12 @@ def get_by_id(id , db : Session):
                            detail= f"Blog with {id} did not exists")
     return blog 
 
-def create(request:BLog2 , db : Session , id : int):
+async def create(request:BLog2 , db : Session , id : int):
     new_blog = models.Blog(title=request.title , body=request.body , user_id = id)
     db.add(new_blog)
     db.commit()
     db.refresh(new_blog)
+    await manager.broadcast(f"New blog created: {new_blog.title}")
     return new_blog
 
 def delete_by_id(id , db : Session):
