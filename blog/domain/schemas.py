@@ -44,13 +44,9 @@ class BLogPatch(BaseModel):
 class showBlog(BaseModel):
     title : str 
     body : str 
-    creator : Optional[showUser]  
 
-    class config:
-        orm_mode = True
-    model_config = {
-        "from_attributes": True
-    }
+    class Config:
+        from_attributes = True
 
 class Login(BaseModel):
      username : str 

@@ -5,9 +5,14 @@ from ..domain.schemas import BLog2 , User2 , showBlog , showUser , BLogPatch , A
 from fastapi import  status , Response , HTTPException , APIRouter
 from ..socket.configuration import manager
 
+
 def get_all(db : Session):
-    return db.query(models.Blog).all() 
-    
+    blog =  db.query(models.Blog).all() 
+    return ApiResponse(
+        message="Blog fetched successfully",
+        statusCode=200,
+        dataList = blog
+    )
 
 def get_by_id(id , db : Session):
     blog = db.query(models.Blog).filter(models.Blog.id==id).first()

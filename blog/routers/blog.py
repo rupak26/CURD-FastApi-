@@ -27,7 +27,7 @@ async def create(request:BLog2 , db : Session = Depends(get_db),get_current_user
             description='''
             Get all Blogs from Database
             ''',
-            status_code= status.HTTP_200_OK, response_model = List[showBlog])
+            status_code= status.HTTP_200_OK, response_model = ApiResponse[List[showBlog]])
 def details(db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
     return blog.get_all(db)
 

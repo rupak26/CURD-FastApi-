@@ -21,7 +21,6 @@ from .socket.configuration import manager
 
 app = FastAPI() 
 
-client = []
 
 models.Base.metadata.create_all(engine) 
 
