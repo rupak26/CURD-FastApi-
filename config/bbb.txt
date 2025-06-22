@@ -1,0 +1,73 @@
+✅ Step 1: Define ErrorDetails and ApiResponse as Pydantic Models
+
+
+from typing import Generic, List, Optional, TypeVar
+from pydantic import BaseModel
+from pydantic.generics import GenericModel
+
+T = TypeVar('T')
+
+class ErrorDetails(BaseModel):
+    field: str
+    message: str
+
+class ApiResponse(GenericModel, Generic[T]):
+    message: Optional[str] = None
+    errorDetails: Optional[List[ErrorDetails]] = None
+    statusCode: Optional[int] = None
+    data: Optional[T] = None
+    dataList: Optional[List[T]] = None
+
+✅ Step 2: Define a Sample Product Model
+
+class Product(BaseModel):
+    id: int
+    name: str
+    price: float
+    description: Optional[str] = None
+    
+✅ Step 3: Use in a FastAPI Endpoint
+
+
+python  **  Copy  ** Edit
+
+from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+
+app = FastAPI()
+
+@app.get("/product/{product_id}", response_model=ApiResponse[Product])
+async def get_product(product_id: int):
+    product = Product(id=product_id, name="Laptop", price=1200.00)
+    response = ApiResponse[Product](
+        message="Product fetched successfully",
+        statusCode=200,
+        data=product
+    )
+    return response
+
+@app.get("/products", response_model=ApiResponse[Product])
+async def get_products():
+    products = [
+        Product(id=1, name="Laptop", price=1200.00),
+        Product(id=2, name="Mouse", price=25.00)
+    ]
+    return ApiResponse[Product](
+        message="Product list",
+        statusCode=200,
+        dataList=products
+    )
+✅ Example Output
+json
+{
+  "message": "Product fetched successfully",
+  "errorDetails": null,
+  "statusCode": 200,
+  "data": {
+    "id": 1,
+    "name": "Laptop",
+    "price": 1200.0,
+    "description": null
+  },
+  "dataList": null
+}

@@ -1,11 +1,12 @@
 from  sqlalchemy.orm import Session  
 from ..domain import models
-from ..domain.schemas import BLog2 , User2 , showBlog , showUser , BLogPatch
+from typing import List
+from ..domain.schemas import BLog2 , User2 , showBlog , showUser , BLogPatch , ApiResponse
 from fastapi import  status , Response , HTTPException , APIRouter
 from ..socket.configuration import manager
 
 def get_all(db : Session):
-    return  db.query(models.Blog).all() 
+    return db.query(models.Blog).all() 
     
 
 def get_by_id(id , db : Session):
@@ -21,7 +22,7 @@ async def create(request:BLog2 , db : Session , id : int):
     db.commit()
     db.refresh(new_blog)
     pid = new_blog.user_id
-    user = db.query(models.User).filter(models.User.id==id).first()
+    user = db.query(models.User).filter(models.User.id==pid).first()
     await manager.broadcast(f"New blog created by {user.username} titled {new_blog.title}")
     return new_blog
 

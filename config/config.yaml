@@ -1,0 +1,38 @@
+development:
+  DATABASE:
+    NAME: "hfms"
+    USERNAME: "postgres"
+    PASSWORD: "Ati@123"
+    HOST: "192.168.0.83"
+    PORT: 5432
+  RABBITMQ:
+    URL : "amqp://guest:guest@localhost/"
+    NAME: "device_data"
+    KEY : "mqtt.processed_data"
+  MQTT_BROKER:
+    HOST: "192.168.0.83"
+    PORT: 1883
+    USERNAME: "ati_iot"
+    PASSWORD: "12345"
+    TOPIC: "hfms/#"
+  LOG:
+    DIRECTORY: "./log" 
+    NAME: "data_acquisition_service.log"
+    SIZE: 20
+
+production:
+  RABBITMQ:
+    RABBITMQ_URL = "production_rabbitmq_url"
+    EXCHANGE_NAME = "production_exchange_name"
+    ROUTING_KEY = "production_routing_key"
+  MQTT_BROKER:
+    HOST: "production_mqtt_broker_host"
+    PORT: "production_mqtt_broker_port"
+    USERNAME: "production_mqtt_user"
+    PASSWORD: "production_mqtt_password"
+    TOPIC: "production_mqtt_wildcard_topic"
+  LOG:
+    DIRECTORY: "production_log_directory" 
+    NAME: "production_log_name"
+    SIZE: "production_log_size"
+

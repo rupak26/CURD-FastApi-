@@ -1,0 +1,1 @@
+blog_desc = "New Blog post description"
