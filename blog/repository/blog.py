@@ -1,25 +1,40 @@
 from  sqlalchemy.orm import Session  
 from ..domain import models
 from typing import List
-from ..domain.schemas import BLog2 , User2 , showBlog , showUser , BLogPatch , ApiResponse
+from ..domain.schemas import BLog2 , User2 , showBlog , showUser , BLogPatch 
 from fastapi import  status , Response , HTTPException , APIRouter
 from ..socket.configuration import manager
-
+from ..response.schema import ApiResponse 
 
 def get_all(db : Session):
-    blog =  db.query(models.Blog).all() 
+    datalist = db.query(models.Blog).all() 
+    blogs = [showBlog.from_orm(blog) for blog in datalist]
+    if not blogs:
+        return ApiResponse(
+            message = "Database is empty" ,
+            statusCode =  204 ,
+            datalist = []
+        )
     return ApiResponse(
-        message="Blog fetched successfully",
-        statusCode=200,
-        dataList = blog
+        message = "Fatching was successfull" ,
+        statusCode = 200,
+        datalist = blogs
     )
 
 def get_by_id(id , db : Session):
-    blog = db.query(models.Blog).filter(models.Blog.id==id).first()
-    if blog is None:
-       raise HTTPException(status_code= status.HTTP_404_NOT_FOUND , 
-                           detail= f"Blog with {id} did not exists")
-    return blog 
+    datalist = db.query(models.Blog).filter(models.Blog.id==id).first()
+    blogs = showBlog.from_orm(datalist)
+    if blogs is None:
+        return ApiResponse(
+            message = f"Blog with id {id} not found"  ,
+            statusCode =  404 ,
+            datalist = []
+        )
+    return ApiResponse(
+        message = "Fatching was successfull" ,
+        statusCode = status.HTTP_200_OK  ,
+        datalist = blogs
+    )
 
 async def create(request:BLog2 , db : Session , id : int):
     new_blog = models.Blog(title=request.title , body=request.body , user_id = id)
@@ -29,16 +44,28 @@ async def create(request:BLog2 , db : Session , id : int):
     pid = new_blog.user_id
     user = db.query(models.User).filter(models.User.id==pid).first()
     await manager.broadcast(f"New blog created by {user.username} titled {new_blog.title}")
-    return new_blog
+    result =  showBlog.from_orm(new_blog)
+    return ApiResponse(
+        message = "Fatching was successfull" ,
+        statusCode = 200 ,
+        datalist = result
+    )
 
 def delete_by_id(id , db : Session):
     blog = db.query(models.Blog).filter(models.Blog.id==id)
     if not blog:
-       raise HTTPException(status_code= status.HTTP_404_NOT_FOUND , 
-                           detail= f"Blog with {id} did not exists")
+        return ApiResponse(
+            message = f"Blog with id {id} not found" ,
+            statusCode =  404 ,
+            datalist = []
+        )
     blog.delete(synchronize_session=False) 
     db.commit() 
-    return ({'msg' : 'content deleted'})
+    return ApiResponse(
+            message = "Blog deleted" ,
+            statusCode =  204 ,
+            datalist = []
+        )
 
 def updated_by_id(id:int , request:BLog2 , db : Session):
     blog = db.query(models.Blog).filter(models.Blog.id == id).update(
@@ -48,18 +75,28 @@ def updated_by_id(id:int , request:BLog2 , db : Session):
         },
         synchronize_session=False
     )
-    if blog == 0:
-       raise HTTPException(status_code= status.HTTP_404_NOT_FOUND, 
-                           detail= f"Blog with {id} did not exists")
+    if not blog:
+        return ApiResponse(
+            message =  f"Blog with id {id} not found" ,
+            statusCode =  404 ,
+            datalist = []
+        )
     
     db.commit() 
-    return ({'msg' : 'content updated'})
+    return ApiResponse(
+            message = "Blog Updated" ,
+            statusCode =  200 ,
+            datalist = []
+        )
 
 def updatedPartiali_by_id(id:int , request:BLogPatch , db : Session):
     blog = db.query(models.Blog).filter(models.Blog.id == id).first()
     if not blog:
-       raise HTTPException(status_code= status.HTTP_404_NOT_FOUND, 
-                           detail= f"Blog with {id} did not exists")
+       return ApiResponse(
+            message = f"Blog with id {id} not found" ,
+            statusCode =  404 ,
+            datalist = []
+        )
     if request.title is not None:
         blog.title = request.title
 
@@ -68,4 +105,8 @@ def updatedPartiali_by_id(id:int , request:BLogPatch , db : Session):
     
     db.commit()
     db.refresh(blog)
-    return ({'msg' : 'content updated'})
+    return ApiResponse(
+            message = "Blog Updated" ,
+            statusCode =  200 ,
+            datalist = []
+        )

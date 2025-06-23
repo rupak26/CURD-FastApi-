@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from ..hasing import Hasing
 from typing import List
 from ..repository import user
+from ..response.schema import ApiResponse
 
 router = APIRouter(
     prefix= '/user',
@@ -17,7 +18,8 @@ router = APIRouter(
              description='''
              Create New Users
              ''',
-             status_code=status.HTTP_201_CREATED)
+             status_code=status.HTTP_201_CREATED,
+             response_model = ApiResponse)
 def create_user_route(request: User2, db: Session = Depends(get_db)):
     return user.create_user(request, db)
 
@@ -26,7 +28,8 @@ def create_user_route(request: User2, db: Session = Depends(get_db)):
             description='''
             Get all users
             ''',
-            status_code=status.HTTP_202_ACCEPTED ,  response_model=List[showUser])
+            status_code=status.HTTP_202_ACCEPTED,
+            response_model=ApiResponse)
 def show_user(db : Session = Depends(get_db)):
     return user.show_all_user(db)
 
@@ -35,7 +38,8 @@ def show_user(db : Session = Depends(get_db)):
             description='''
             Get individul user based upon their id
             ''',
-            status_code=status.HTTP_202_ACCEPTED ,  response_model=showUser)
+            status_code=status.HTTP_202_ACCEPTED,
+            response_model=ApiResponse)
 def show_user(id:int , db : Session = Depends(get_db)):
     return user.show_user_by_id(id , db)
 
