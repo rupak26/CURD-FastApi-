@@ -69,3 +69,21 @@ def update_by_id(request:BLog2 , id:int ,  db : Session = Depends(get_db),get_cu
               response_model= ApiResponse)
 def update_Partiali_by_id(request:BLogPatch , id:int , db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
     return blog.updatedPartiali_by_id(id , request  , db)
+
+
+
+# @router.get("/unauthorized")
+# def test_unauthorized():
+#     raise HTTPException(status_code=401, detail="User not authenticated")
+
+# @router.get("/forbidden")
+# def test_forbidden():
+#     raise HTTPException(status_code=403, detail="Access denied")
+
+# @router.get("/notfound")
+# def test_notfound():
+#     raise HTTPException(status_code=404, detail="This item was not found")
+
+# @router.get("/badgateway")
+# def test_badgateway():
+#     raise HTTPException(status_code=502, detail="External service error")

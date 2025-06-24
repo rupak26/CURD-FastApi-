@@ -4,7 +4,7 @@ from pathlib import Path
 
 ##############################
 ENVIRONMENT = "development"
-# ENVIRONMENT = "production"
+#ENVIRONMENT = "production"
 ##############################
 
 BASE_DIR = Path(__file__).resolve().parent

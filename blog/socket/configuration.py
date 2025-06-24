@@ -22,5 +22,19 @@ class ConnectionManager:
     async def broadcast(self, message: str):
         for connection in self.active_connections:
             await connection.send_text(message)
+
+    async def send_ping(self):
+        while True:
+            now = time.time
+            for connection in list(self.active_connections):
+                if now - self.last_pong.get(connection, 0) > 30:
+                    await connection.close()
+                    self.disconnect(connection)
+                else:
+                    try:
+                        await connection.send_text("ping")
+                    except Exception:
+                        self.disconnect(connection)
+            await asyncio.sleep(10) 
     
 manager = ConnectionManager()

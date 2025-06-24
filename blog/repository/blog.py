@@ -22,14 +22,14 @@ def get_all(db : Session):
     )
 
 def get_by_id(id , db : Session):
-    datalist = db.query(models.Blog).filter(models.Blog.id==id).first()
-    blogs = showBlog.from_orm(datalist)
-    if blogs is None:
+    datalist = db.query(models.Blog).filter(models.Blog.id==id).first() 
+    if datalist is None:
         return ApiResponse(
             message = f"Blog with id {id} not found"  ,
             statusCode =  404 ,
             datalist = []
         )
+    blogs = showBlog.from_orm(datalist)
     return ApiResponse(
         message = "Fatching was successfull" ,
         statusCode = status.HTTP_200_OK  ,
