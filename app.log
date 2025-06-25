@@ -1,0 +1,10 @@
+2025-06-25 17:40:09,047 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-25 17:40:09,048 | database | INFO | DB session opened
+2025-06-25 17:40:09,049 | routers.blog | INFO | API call: GET /blog/
+2025-06-25 17:40:09,061 | database | INFO | DB session closed
+2025-06-25 17:40:09,062 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-25 17:43:39,535 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-25 17:43:39,536 | database | INFO | DB session opened
+2025-06-25 17:43:39,537 | routers.blog | INFO | API call: GET /blog/
+2025-06-25 17:43:39,555 | database | INFO | DB session closed
+2025-06-25 17:43:39,555 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200

@@ -9,6 +9,9 @@ from .oauth2 import get_current_user
 from ..repository import blog
 from ..core import swagger_doc as s
 from ..response.schema import ApiResponse
+import logging 
+
+logger = logging.getLogger("routers.blog")
 
 router = APIRouter(
     prefix='/blog' ,
@@ -20,6 +23,7 @@ router = APIRouter(
               description=s.blog_desc, 
               status_code= status.HTTP_201_CREATED)
 async def create(request:BLog2 , db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
+    logger.info(f"API call: POST /blog/")
     return await blog.create(request , db ,  get_current_user)
 
 # Customize request_model via using response schema 
@@ -30,6 +34,7 @@ async def create(request:BLog2 , db : Session = Depends(get_db),get_current_user
             ''',
             status_code= status.HTTP_200_OK, response_model = ApiResponse)
 def details(db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
+    logger.info(f"API call: GET /blog/")
     return blog.get_all(db)
 
 
@@ -41,6 +46,7 @@ def details(db : Session = Depends(get_db),get_current_user : User2 = Depends(ge
             status_code= status.HTTP_200_OK,
             response_model= ApiResponse)
 def details_by_id(id , db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
+    logger.info(f"API call: GET /blog/{id}")
     return blog.get_by_id(id , db)
 
 @router.delete('/{id}' ,
@@ -49,6 +55,7 @@ def details_by_id(id , db : Session = Depends(get_db),get_current_user : User2 =
                status_code=status.HTTP_200_OK,
                response_model= ApiResponse)
 def distroy_by_id(id , db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
+    logger.info(f"API call: DELETE /blog/{id}")
     return blog.delete_by_id(id,db)
 
 
@@ -59,6 +66,7 @@ def distroy_by_id(id , db : Session = Depends(get_db),get_current_user : User2 =
             ''',status_code=status.HTTP_202_ACCEPTED,
             response_model= ApiResponse)
 def update_by_id(request:BLog2 , id:int ,  db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
+    logger.info(f"API call: PUT /blog/{id}")
     return blog.updated_by_id(id , request , db)
 
 @router.patch('/{id}',
@@ -68,6 +76,7 @@ def update_by_id(request:BLog2 , id:int ,  db : Session = Depends(get_db),get_cu
               ''',status_code=status.HTTP_202_ACCEPTED,
               response_model= ApiResponse)
 def update_Partiali_by_id(request:BLogPatch , id:int , db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
+    logger.info(f"API call: PATCH /blog/{id}")
     return blog.updatedPartiali_by_id(id , request  , db)
 
 

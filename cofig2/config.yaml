@@ -1,0 +1,24 @@
+development:
+  DATABASE:
+   NAME: "blog"
+   USERNAME: "postgres"
+   PASSWORD: "1234"
+   HOST: "localhost"
+   PORT: 5432
+  LOG:
+   DIRECTORY: "cofig2/" 
+   NAME: "app.log"
+   SIZE: 20
+
+# production:
+#   DATABASE:
+#    NAME: "blog"
+#    USERNAME: "postgres"
+#    PASSWORD: "1234"
+#    HOST: "localhost"
+#    PORT: 5432
+#   LOG:
+#    DIRECTORY: "blog/cofig2" 
+#    NAME: "bapp.log"
+#    SIZE: 20 
+

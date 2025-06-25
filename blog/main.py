@@ -12,9 +12,13 @@ from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from .socket.configuration import manager
 from .response.schema import ApiResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
-
+import logging
+from cofig2.logging_config import setup_logging
 import time , asyncio
 
+
+setup_logging()
+logger = logging.getLogger(__name__)
 app = FastAPI() 
 
 
@@ -69,6 +73,12 @@ async def get():
     ''')
 
 
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    logger.info(f"→ {request.method} {request.url}")
+    response = await call_next(request)
+    logger.info(f"← {request.method} {request.url} — {response.status_code}")
+    return response
 
 # Custom error response format
 def custom_error_response(status_code: int, message: str , errorDetails : str):
@@ -98,7 +108,6 @@ async def handle_http_exception(request: Request, exc: StarletteHTTPException):
         return custom_error_response(502, "Bad gateway", str(exc))
     else:
         return custom_error_response(exc.status_code, exc.detail, str(exc))
-
 
 
 

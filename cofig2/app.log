@@ -1,0 +1,75 @@
+2025-06-25 10:44:13,894 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-25 10:44:13,895 | database | INFO | DB session opened
+2025-06-25 10:44:13,896 | routers.blog | INFO | API call: GET /blog/
+2025-06-25 10:44:13,912 | database | INFO | DB session closed
+2025-06-25 10:44:13,912 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-25 10:50:13,545 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/4
+2025-06-25 10:50:13,546 | database | INFO | DB session opened
+2025-06-25 10:50:13,547 | routers.blog | INFO | API call: GET /blog/4
+2025-06-25 10:50:13,558 | database | INFO | DB session closed
+2025-06-25 10:50:13,558 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/4 — 200
+2025-06-25 11:35:08,504 | blog.main | INFO | → DELETE http://127.0.0.1:8000/blog/53
+2025-06-25 11:35:08,505 | database | INFO | DB session opened
+2025-06-25 11:35:08,506 | database | ERROR | DB session error: 401: Could not validate credentials
+2025-06-25 11:35:08,506 | database | INFO | DB session closed
+2025-06-25 11:35:08,507 | blog.main | INFO | ← DELETE http://127.0.0.1:8000/blog/53 — 401
+2025-06-25 11:35:34,588 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/53
+2025-06-25 11:35:34,589 | database | INFO | DB session opened
+2025-06-25 11:35:34,589 | database | ERROR | DB session error: 401: Not authenticated
+2025-06-25 11:35:34,590 | database | INFO | DB session closed
+2025-06-25 11:35:34,590 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/53 — 401
+2025-06-25 11:35:34,615 | blog.main | INFO | → GET http://127.0.0.1:8000/favicon.ico
+2025-06-25 11:35:34,616 | blog.main | INFO | ← GET http://127.0.0.1:8000/favicon.ico — 404
+2025-06-25 11:36:30,803 | blog.main | INFO | → PUT http://127.0.0.1:8000/blog/10
+2025-06-25 11:36:30,804 | database | INFO | DB session opened
+2025-06-25 11:36:30,805 | database | ERROR | DB session error: 401: Could not validate credentials
+2025-06-25 11:36:30,805 | database | INFO | DB session closed
+2025-06-25 11:36:30,805 | blog.main | INFO | ← PUT http://127.0.0.1:8000/blog/10 — 401
+2025-06-25 11:36:48,401 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-25 11:36:48,402 | database | INFO | DB session opened
+2025-06-25 11:36:48,403 | database | ERROR | DB session error: 401: Could not validate credentials
+2025-06-25 11:36:48,403 | database | INFO | DB session closed
+2025-06-25 11:36:48,403 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 401
+2025-06-25 11:36:53,269 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-25 11:36:53,270 | database | INFO | DB session opened
+2025-06-25 11:36:53,270 | database | ERROR | DB session error: 401: Could not validate credentials
+2025-06-25 11:36:53,271 | database | INFO | DB session closed
+2025-06-25 11:36:53,271 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 401
+2025-06-25 11:37:10,348 | blog.main | INFO | → POST http://127.0.0.1:8000/login
+2025-06-25 11:37:10,351 | database | INFO | DB session opened
+2025-06-25 11:37:10,623 | database | INFO | DB session closed
+2025-06-25 11:37:10,624 | blog.main | INFO | ← POST http://127.0.0.1:8000/login — 200
+2025-06-25 11:37:13,744 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-25 11:37:13,745 | database | INFO | DB session opened
+2025-06-25 11:37:13,745 | routers.blog | INFO | API call: GET /blog/
+2025-06-25 11:37:13,752 | database | INFO | DB session closed
+2025-06-25 11:37:13,753 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-25 15:43:10,205 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-25 15:43:10,207 | database | INFO | DB session opened
+2025-06-25 15:43:10,208 | database | ERROR | DB session error: 401: Could not validate credentials
+2025-06-25 15:43:10,208 | database | INFO | DB session closed
+2025-06-25 15:43:10,208 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 401
+2025-06-25 15:43:25,624 | blog.main | INFO | → POST http://127.0.0.1:8000/login
+2025-06-25 15:43:25,634 | database | INFO | DB session opened
+2025-06-25 15:43:25,913 | database | INFO | DB session closed
+2025-06-25 15:43:25,913 | blog.main | INFO | ← POST http://127.0.0.1:8000/login — 200
+2025-06-25 15:43:30,136 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-25 15:43:30,137 | database | INFO | DB session opened
+2025-06-25 15:43:30,137 | routers.blog | INFO | API call: GET /blog/
+2025-06-25 15:43:30,145 | database | INFO | DB session closed
+2025-06-25 15:43:30,146 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-25 15:43:55,513 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/4
+2025-06-25 15:43:55,513 | database | INFO | DB session opened
+2025-06-25 15:43:55,514 | routers.blog | INFO | API call: GET /blog/4
+2025-06-25 15:43:55,517 | database | INFO | DB session closed
+2025-06-25 15:43:55,518 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/4 — 200
+2025-06-25 17:55:28,469 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-25 17:55:28,470 | database | INFO | DB session opened
+2025-06-25 17:55:28,471 | routers.blog | INFO | API call: GET /blog/
+2025-06-25 17:55:28,484 | database | INFO | DB session closed
+2025-06-25 17:55:28,485 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-25 17:58:20,592 | blog.main | INFO | → PUT http://127.0.0.1:8000/blog/9
+2025-06-25 17:58:20,593 | database | INFO | DB session opened
+2025-06-25 17:58:20,595 | routers.blog | INFO | API call: PUT /blog/9
+2025-06-25 17:58:20,601 | database | INFO | DB session closed
+2025-06-25 17:58:20,601 | blog.main | INFO | ← PUT http://127.0.0.1:8000/blog/9 — 202
