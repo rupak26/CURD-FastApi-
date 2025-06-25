@@ -5,11 +5,14 @@ from ..domain.schemas import BLog2 , User2 , showBlog , showUser , BLogPatch
 from fastapi import  status , Response , HTTPException , APIRouter
 from ..socket.configuration import manager
 from ..response.schema import ApiResponse 
+import logging 
+logger = logging.getLogger("repository.blog")
 
 def get_all(db : Session):
     datalist = db.query(models.Blog).all() 
     blogs = [showBlog.from_orm(blog) for blog in datalist]
     if not blogs:
+        logger.error(f"Database is empty")
         return ApiResponse(
             message = "Database is empty" ,
             statusCode =  204 ,
@@ -24,6 +27,7 @@ def get_all(db : Session):
 def get_by_id(id , db : Session):
     datalist = db.query(models.Blog).filter(models.Blog.id==id).first() 
     if datalist is None:
+        logger.error(f"{id} is Not found")
         return ApiResponse(
             message = f"Blog with id {id} not found"  ,
             statusCode =  404 ,
@@ -54,6 +58,7 @@ async def create(request:BLog2 , db : Session , id : int):
 def delete_by_id(id , db : Session):
     blog = db.query(models.Blog).filter(models.Blog.id==id)
     if not blog:
+        logger.error(f"{id} is Not found")
         return ApiResponse(
             message = f"Blog with id {id} not found" ,
             statusCode =  404 ,
@@ -76,6 +81,7 @@ def updated_by_id(id:int , request:BLog2 , db : Session):
         synchronize_session=False
     )
     if not blog:
+        logger.error(f"{id} is Not found")
         return ApiResponse(
             message =  f"Blog with id {id} not found" ,
             statusCode =  404 ,
@@ -92,6 +98,7 @@ def updated_by_id(id:int , request:BLog2 , db : Session):
 def updatedPartiali_by_id(id:int , request:BLogPatch , db : Session):
     blog = db.query(models.Blog).filter(models.Blog.id == id).first()
     if not blog:
+       logger.error(f"{id} is Not found")
        return ApiResponse(
             message = f"Blog with id {id} not found" ,
             statusCode =  404 ,

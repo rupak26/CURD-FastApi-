@@ -3,14 +3,6 @@ from pathlib import Path
 from logging.handlers import TimedRotatingFileHandler
 from cofig2.config import LOG_DIRECTORY , LOG_NAME , LOG_SIZE , ENVIRONMENT as environment
 
-print("===============================")
-print(LOG_DIRECTORY)
-
-
-LOG_DIRECTORY = "/home/user/FastAPI/CURD-FastApi--1/cofig2"
-LOG_NAME = "app.log"
-
-
 LOG_PATH = os.path.join(LOG_DIRECTORY, LOG_NAME)
 
 def setup_logging():
