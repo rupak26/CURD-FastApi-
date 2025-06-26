@@ -1,0 +1,22 @@
+2025-06-26 14:54:08 | ERROR | logging_config.py:setup_logging:101 | Error setting up loggers: 'on_rotation' is an invalid keyword argument for open() | 
+2025-06-26 14:58:28 | ERROR | logging_config.py:setup_logging:101 | Error setting up loggers: 'on_rotation' is an invalid keyword argument for open() | 
+2025-06-26 14:58:32 | ERROR | logging_config.py:setup_logging:101 | Error setting up loggers: 'on_rotation' is an invalid keyword argument for open() | 
+2025-06-26 14:58:35 | ERROR | logging_config.py:setup_logging:102 | Error setting up loggers: 'on_rotation' is an invalid keyword argument for open() | 
+2025-06-26 14:58:41 | ERROR | logging_config.py:setup_logging:102 | Error setting up loggers: 'on_rotation' is an invalid keyword argument for open() | 
+2025-06-26 14:58:51 | ERROR | logging_config.py:setup_logging:103 | Error setting up loggers: 'on_rotation' is an invalid keyword argument for open() | 
+2025-06-26 14:59:21 | ERROR | logging_config.py:setup_logging:100 | Error setting up loggers: 'on_rotation' is an invalid keyword argument for open() | 
+2025-06-26 15:02:59 | ERROR | logging_config.py:setup_logging:99 | Error setting up loggers: 'on_rotation' is an invalid keyword argument for open() | 
+2025-06-26 15:16:09,079 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-26 15:16:09,080 | database | INFO | DB session opened
+2025-06-26 15:16:09,081 | routers.blog | INFO | API call: GET /blog/
+2025-06-26 15:16:09,094 | database | INFO | DB session closed
+2025-06-26 15:16:09,094 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-26 17:04:57,899 | database | ERROR | DB session error: 401: Could not validate credentials
+2025-06-26 17:06:59,858 | repository.blog | ERROR | 500 is Not found
+2025-06-26 17:14:56,722 | repository.blog | ERROR | 500 is Not found
+2025-06-26 17:17:23,944 | repository.blog | ERROR | 500 is Not found
+2025-06-26 17:19:04,961 | repository.blog | ERROR | 500 is Not found
+2025-06-26 17:19:40,250 | repository.blog | ERROR | 500 is Not found
+2025-06-26 17:20:23,881 | repository.blog | ERROR | 500 is Not found
+2025-06-26 17:21:18,766 | repository.blog | ERROR | 500 is Not found
+2025-06-26 17:24:59,571 | repository.blog | ERROR | 500 is Not found

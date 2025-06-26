@@ -3,8 +3,8 @@ import urllib.parse
 from pathlib import Path
 
 ##############################
-ENVIRONMENT = "development"
-#ENVIRONMENT = "production"
+#ENVIRONMENT = "development"
+ENVIRONMENT = "production"
 ##############################
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -38,4 +38,10 @@ PRIMARY_DB_URL = f"postgresql+psycopg2://{DB_USERNAME}:{urllib.parse.quote_plus(
 LOG_DIRECTORY = CONFIG["LOG"]["DIRECTORY"]
 LOG_NAME = CONFIG["LOG"]["NAME"]
 LOG_SIZE = CONFIG["LOG"]["SIZE"]
+
+EMAIL_HOST = CONFIG["EMAIL"]["HOST"]
+EMAIL_USERNAME = CONFIG["EMAIL"]["USERNAME"]
+EMAIL_PASSWORD = CONFIG["EMAIL"]["PASSWORD"]
+EMAIL_PORT = CONFIG["EMAIL"]["PORT"]
+
 

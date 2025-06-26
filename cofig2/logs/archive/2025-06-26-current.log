@@ -1,0 +1,18 @@
+2025-06-26 10:43:07,038 | blog.main | INFO | → GET http://127.0.0.1:8000/user/
+2025-06-26 10:43:07,040 | database | INFO | DB session opened
+2025-06-26 10:43:07,048 | database | INFO | DB session closed
+2025-06-26 10:43:07,048 | blog.main | INFO | ← GET http://127.0.0.1:8000/user/ — 202
+2025-06-26 10:43:46,353 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-26 10:43:46,354 | database | INFO | DB session opened
+2025-06-26 10:43:46,355 | database | ERROR | DB session error: 401: Could not validate credentials
+2025-06-26 10:43:46,356 | database | INFO | DB session closed
+2025-06-26 10:43:46,356 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 401
+2025-06-26 10:44:15,305 | blog.main | INFO | → POST http://127.0.0.1:8000/login
+2025-06-26 10:44:15,308 | database | INFO | DB session opened
+2025-06-26 10:44:15,574 | database | INFO | DB session closed
+2025-06-26 10:44:15,574 | blog.main | INFO | ← POST http://127.0.0.1:8000/login — 200
+2025-06-26 10:44:22,628 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-26 10:44:22,628 | database | INFO | DB session opened
+2025-06-26 10:44:22,629 | routers.blog | INFO | API call: GET /blog/
+2025-06-26 10:44:22,635 | database | INFO | DB session closed
+2025-06-26 10:44:22,636 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200

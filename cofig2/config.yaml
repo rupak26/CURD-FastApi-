@@ -6,9 +6,14 @@ development:
    HOST: "localhost"
    PORT: 5432
   LOG:
-   DIRECTORY: "cofig2/" 
-   NAME: "app.log"
+   DIRECTORY: "cofig2/logs/" 
+   NAME: "current.log"
    SIZE: 20
+  EMAIL:
+   HOST: 
+   USERNAME: 
+   PASSWORD: 
+   PORT: 
 
 production:
   DATABASE:
@@ -18,7 +23,13 @@ production:
    HOST: "localhost"
    PORT: 5432
   LOG:
-   DIRECTORY: "cofig2" 
-   NAME: "app.log"
+   DIRECTORY: "cofig2/logs/" 
+   NAME: "current.log"
    SIZE: 20 
+  EMAIL:
+   HOST: "smtp.gmail.com"
+   USERNAME: "rupakbiswas29bd@gmail.com"
+   PASSWORD: "iruo yfwm xgxx eygl"
+   PORT: 587
+
 

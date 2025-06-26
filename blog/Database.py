@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os , logging
 from dotenv import load_dotenv
-from cofig2.config import PRIMARY_DB_URL as DATABASE_URL
+from cofig2.env_config import PRIMARY_DB_URL as DATABASE_URL
 
 logger = logging.getLogger("database")
 load_dotenv()
