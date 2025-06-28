@@ -7,11 +7,13 @@ from cofig2.env_config import (
    )
 from logging.handlers import SMTPHandler
 from datetime import datetime
+from logging import Handler
+from elasticsearch import Elasticsearch
 
 LOG_PATH = os.path.join(LOG_DIRECTORY, LOG_NAME)
 ARCHIVE_DIR = os.path.join(LOG_DIRECTORY, "archive")
 
-MAX_LOG_SIZE = 20   
+MAX_LOG_SIZE = 20 * 1024  
 BACKUP_COUNT = 10 
 
 
@@ -74,6 +76,8 @@ class ArchiveTimedRotatingFileHandler(TimedRotatingFileHandler):
                 self.rollover_index += 1
 
 
+
+
 def setup_logging():
 
     file_handler = ArchiveTimedRotatingFileHandler(
@@ -86,6 +90,15 @@ def setup_logging():
         archive_dir=ARCHIVE_DIR,
     )
 
+    # mail_handler = SMTPHandler(
+    #     mailhost=(EMAIL_HOST, EMAIL_PORT),
+    #     fromaddr=EMAIL_USERNAME,
+    #     toaddrs=[EMAIL_USERNAME],  # Send alerts to your own email (customize as needed)
+    #     subject='[ERROR] Application log alert',
+    #     credentials=(EMAIL_USERNAME, EMAIL_PASSWORD),
+    #     secure=() if EMAIL_PORT == 587 else None  # Use TLS if port 587
+    # )
+
     formatter = logging.Formatter(
         "%(asctime)s | %(name)s | %(levelname)s | %(message)s"
     )
@@ -97,7 +110,9 @@ def setup_logging():
     else:
         file_handler.setLevel(logging.ERROR)
         console_level = logging.ERROR
-        
+      #  mail_handler.setLevel(logging.ERROR)
+      # mail_handler.setFormatter(formatter)
+       
 
     console_handler = logging.StreamHandler()
     console_handler.setFormatter(formatter)
@@ -108,8 +123,10 @@ def setup_logging():
     root_logger.handlers = []  
     root_logger.addHandler(file_handler)
     root_logger.addHandler(console_handler)
+  #  root_logger.addHandler(mail_handler)
+        
+   
     
-
 
 # import datetime
 # import os

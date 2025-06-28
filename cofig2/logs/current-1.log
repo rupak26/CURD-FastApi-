@@ -1,0 +1,2 @@
+2025-06-28 11:00:25,096 | database | INFO | DB session closed
+2025-06-28 11:00:25,097 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200

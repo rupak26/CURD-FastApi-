@@ -1,2 +1,6 @@
-2025-06-28 11:00:25,096 | database | INFO | DB session closed
-2025-06-28 11:00:25,097 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:11:52,419 | repository.blog | ERROR | 90 is Not found
+2025-06-28 11:24:22,020 | database | ERROR | DB session error: 401: Could not validate credentials
+2025-06-28 11:26:12,602 | database | ERROR | DB session error: 401: Could not validate credentials
+2025-06-28 11:49:52,387 | database | ERROR | DB session error: 401: Could not validate credentials
+2025-06-28 16:27:49,723 | database | ERROR | DB session error: 401: Could not validate credentials
+2025-06-28 16:28:54,495 | database | ERROR | DB session error: 401: Could not validate credentials
