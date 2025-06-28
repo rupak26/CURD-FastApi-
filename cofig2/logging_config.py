@@ -1,34 +1,19 @@
 import logging , os , shutil 
 from pathlib import Path
 from logging.handlers import TimedRotatingFileHandler
-import datetime
 from cofig2.env_config import (
     LOG_DIRECTORY , LOG_NAME , LOG_SIZE , ENVIRONMENT as environment ,
     EMAIL_HOST , EMAIL_PASSWORD , EMAIL_PORT , EMAIL_USERNAME
    )
 from logging.handlers import SMTPHandler
-
+from datetime import datetime
 
 LOG_PATH = os.path.join(LOG_DIRECTORY, LOG_NAME)
 ARCHIVE_DIR = os.path.join(LOG_DIRECTORY, "archive")
 
+MAX_LOG_SIZE = 20   
+BACKUP_COUNT = 10 
 
-def setup_email_logging():
-
-    mail_handler = SMTPHandler(
-        mailhost=(EMAIL_HOST, EMAIL_PORT),
-        fromaddr=EMAIL_USERNAME,
-        toaddrs=EMAIL_USERNAME,
-        subject="🚨 FastAPI Error Alert",
-        credentials=(EMAIL_USERNAME, EMAIL_PASSWORD),
-        secure=()  # Enables TLS; Gmail requires it
-    )
-    mail_handler.setLevel(logging.ERROR)
-    mail_handler.setFormatter(logging.Formatter(
-        "%(asctime)s | %(levelname)s | %(message)s"
-    ))
-    return mail_handler
-   
 
 class ArchiveTimedRotatingFileHandler(TimedRotatingFileHandler):
     def __init__(self, filename, when='midnight', interval=1, backupCount=7,
@@ -37,12 +22,31 @@ class ArchiveTimedRotatingFileHandler(TimedRotatingFileHandler):
             raise ValueError("archive_dir must be provided")
 
         self.archive_dir = archive_dir
+
+        self.maxBytes = MAX_LOG_SIZE
+        self.rollover_index = 1
+        self.last_rollover_date = datetime.utcnow().date() if utc else datetime.now().date()
+        
         os.makedirs(self.archive_dir, exist_ok=True)
         super().__init__(filename, when, interval, backupCount, encoding, utc, archive_dir , **kwargs)
 
+    def shouldRollover(self, record):
+        if super().shouldRollover(record):
+            return True
+
+        if os.path.exists(self.baseFilename):
+            if os.path.getsize(self.baseFilename) >= self.maxBytes:
+                return True
+        return False
     
     def doRollover(self):
+        current_date = datetime.utcnow().date() if self.utc else datetime.now().date()
+        if current_date != self.last_rollover_date:
+            self.rollover_index = 1  
+            self.last_rollover_date = current_date
+
         super().doRollover() 
+
         if self.backupCount > 0:
             logs = sorted([
                 f for f in os.listdir(os.path.dirname(self.baseFilename))
@@ -55,7 +59,19 @@ class ArchiveTimedRotatingFileHandler(TimedRotatingFileHandler):
                 shutil.move(src_path, dst_path)
             except Exception as e:
                 print(f"Failed to archive log file {old_log}: {e}")
+        
+        if os.path.exists(self.baseFilename) and os.path.getsize(self.baseFilename) >= self.maxBytes:
+            self._rollover_by_size()
 
+    def _rollover_by_size(self):
+        while True:
+            rotated_name = f"{self.baseFilename.rsplit('.', 1)[0]}-{self.rollover_index}.log"
+            if not os.path.exists(rotated_name):
+                shutil.move(self.baseFilename, rotated_name)
+                self.rollover_index += 1
+                break
+            else:
+                self.rollover_index += 1
 
 
 def setup_logging():
@@ -79,7 +95,6 @@ def setup_logging():
         file_handler.setLevel(logging.INFO)
         console_level = logging.INFO
     else:
-        mail_handler = setup_email_logging()
         file_handler.setLevel(logging.ERROR)
         console_level = logging.ERROR
         
@@ -93,7 +108,6 @@ def setup_logging():
     root_logger.handlers = []  
     root_logger.addHandler(file_handler)
     root_logger.addHandler(console_handler)
-    root_logger.addHandler(mail_handler)
     
 
 
@@ -139,16 +153,16 @@ def setup_logging():
 #             return False
 
 
-# def archive_rotated_logs(rotated_file_path):
-#     try:
-#         filename = os.path.basename(rotated_file_path)
-#         date_prefix = datetime.datetime.utcnow().strftime("%Y-%m-%d")
-#         archived_name = f"{date_prefix}-{filename}"
-#         dst_path = os.path.join(ARCHIVE_DIR, archived_name)
-#         shutil.move(rotated_file_path, dst_path)
-#         logger.info(f"Archived {rotated_file_path} → {dst_path}")
-#     except Exception as e:
-#         logger.error(f"Error archiving log: {e}")
+# # def archive_rotated_logs(rotated_file_path):
+# #     try:
+# #         filename = os.path.basename(rotated_file_path)
+# #         date_prefix = datetime.datetime.utcnow().strftime("%Y-%m-%d")
+# #         archived_name = f"{date_prefix}-{filename}"
+# #         dst_path = os.path.join(ARCHIVE_DIR, archived_name)
+# #         shutil.move(rotated_file_path, dst_path)
+# #         logger.info(f"Archived {rotated_file_path} → {dst_path}")
+# #     except Exception as e:
+# #         logger.error(f"Error archiving log: {e}")
 
 
 # def setup_logging() -> None:
@@ -180,7 +194,6 @@ def setup_logging():
 #             log_file, 
 #             rotation=rotator.should_rotate, 
 #             level="DEBUG", 
-#             on_rotation=archive_rotated_logs ,
 #             format=log_format
 #         )
 #     except Exception as e:

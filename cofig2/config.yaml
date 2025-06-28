@@ -29,7 +29,7 @@ production:
   EMAIL:
    HOST: "smtp.gmail.com"
    USERNAME: "rupakbiswas29bd@gmail.com"
-   PASSWORD: "iruo yfwm xgxx eygl"
+   PASSWORD: 
    PORT: 587
 
 

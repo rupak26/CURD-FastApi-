@@ -1,0 +1,281 @@
+2025-06-28 09:57:06,363 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/500
+2025-06-28 09:57:06,364 | database | INFO | DB session opened
+2025-06-28 09:57:06,365 | routers.blog | INFO | API call: GET /blog/500
+2025-06-28 09:57:06,371 | repository.blog | ERROR | 500 is Not found
+2025-06-28 09:57:06,373 | database | INFO | DB session closed
+2025-06-28 09:57:06,373 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/500 — 200
+2025-06-28 09:57:33,074 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/500
+2025-06-28 09:57:33,075 | database | INFO | DB session opened
+2025-06-28 09:57:33,077 | routers.blog | INFO | API call: GET /blog/500
+2025-06-28 09:57:33,078 | repository.blog | ERROR | 500 is Not found
+2025-06-28 09:57:33,079 | database | INFO | DB session closed
+2025-06-28 09:57:33,079 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/500 — 200
+2025-06-28 09:57:49,483 | repository.blog | ERROR | 500 is Not found
+2025-06-28 09:58:59,686 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/500
+2025-06-28 09:58:59,687 | database | INFO | DB session opened
+2025-06-28 09:58:59,689 | routers.blog | INFO | API call: GET /blog/500
+2025-06-28 09:58:59,696 | repository.blog | ERROR | 500 is Not found
+2025-06-28 09:58:59,697 | database | INFO | DB session closed
+2025-06-28 09:58:59,698 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/500 — 200
+2025-06-28 09:59:11,913 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/500
+2025-06-28 09:59:11,914 | database | INFO | DB session opened
+2025-06-28 09:59:11,914 | routers.blog | INFO | API call: GET /blog/500
+2025-06-28 09:59:11,916 | repository.blog | ERROR | 500 is Not found
+2025-06-28 09:59:11,917 | database | INFO | DB session closed
+2025-06-28 09:59:11,917 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/500 — 200
+2025-06-28 10:08:48,707 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/500
+2025-06-28 10:08:48,708 | database | INFO | DB session opened
+2025-06-28 10:08:48,708 | routers.blog | INFO | API call: GET /blog/500
+2025-06-28 10:08:48,715 | repository.blog | ERROR | 500 is Not found
+2025-06-28 10:08:48,716 | database | INFO | DB session closed
+2025-06-28 10:08:48,716 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/500 — 200
+2025-06-28 10:09:55,188 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/500
+2025-06-28 10:09:55,189 | database | INFO | DB session opened
+2025-06-28 10:09:55,190 | routers.blog | INFO | API call: GET /blog/500
+2025-06-28 10:09:55,197 | repository.blog | ERROR | 500 is Not found
+2025-06-28 10:09:55,198 | database | INFO | DB session closed
+2025-06-28 10:09:55,198 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/500 — 200
+2025-06-28 10:10:19,222 | repository.blog | ERROR | 500 is Not found
+2025-06-28 10:12:07,941 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/5
+2025-06-28 10:12:07,942 | database | INFO | DB session opened
+2025-06-28 10:12:07,943 | routers.blog | INFO | API call: GET /blog/5
+2025-06-28 10:12:07,953 | database | INFO | DB session closed
+2025-06-28 10:12:07,954 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/5 — 200
+2025-06-28 10:12:34,730 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/90
+2025-06-28 10:12:34,731 | database | INFO | DB session opened
+2025-06-28 10:12:34,732 | routers.blog | INFO | API call: GET /blog/90
+2025-06-28 10:12:34,733 | repository.blog | ERROR | 90 is Not found
+2025-06-28 10:12:34,734 | database | INFO | DB session closed
+2025-06-28 10:12:34,734 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/90 — 200
+2025-06-28 10:12:58,616 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/90
+2025-06-28 10:12:58,617 | database | INFO | DB session opened
+2025-06-28 10:12:58,617 | routers.blog | INFO | API call: GET /blog/90
+2025-06-28 10:12:58,619 | repository.blog | ERROR | 90 is Not found
+2025-06-28 10:12:58,620 | database | INFO | DB session closed
+2025-06-28 10:12:58,620 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/90 — 200
+2025-06-28 10:41:55,181 | blog.main | INFO | → GET http://127.0.0.1:8000/docs
+2025-06-28 10:41:55,181 | blog.main | INFO | ← GET http://127.0.0.1:8000/docs — 200
+2025-06-28 10:41:55,302 | blog.main | INFO | → GET http://127.0.0.1:8000/openapi.json
+2025-06-28 10:41:55,309 | blog.main | INFO | ← GET http://127.0.0.1:8000/openapi.json — 200
+2025-06-28 10:42:07,406 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:42:07,407 | database | INFO | DB session opened
+2025-06-28 10:42:07,408 | database | ERROR | DB session error: 401: Not authenticated
+2025-06-28 10:42:07,408 | database | INFO | DB session closed
+2025-06-28 10:42:07,408 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 401
+2025-06-28 10:42:47,014 | blog.main | INFO | → POST http://127.0.0.1:8000/login
+2025-06-28 10:42:47,018 | database | INFO | DB session opened
+2025-06-28 10:42:47,299 | database | INFO | DB session closed
+2025-06-28 10:42:47,299 | blog.main | INFO | ← POST http://127.0.0.1:8000/login — 200
+2025-06-28 10:42:51,945 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:42:51,947 | database | INFO | DB session opened
+2025-06-28 10:42:51,948 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:42:51,956 | database | INFO | DB session closed
+2025-06-28 10:42:51,956 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:53:50,014 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:53:50,015 | database | INFO | DB session opened
+2025-06-28 10:53:50,016 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:53:50,029 | database | INFO | DB session closed
+2025-06-28 10:53:50,030 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:57:27,163 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:57:27,164 | database | INFO | DB session opened
+2025-06-28 10:57:27,165 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:57:27,178 | database | INFO | DB session closed
+2025-06-28 10:57:27,178 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:57:56,849 | blog.main | INFO | → PUT http://127.0.0.1:8000/blog/5
+2025-06-28 10:57:56,850 | database | INFO | DB session opened
+2025-06-28 10:57:56,851 | routers.blog | INFO | API call: PUT /blog/5
+2025-06-28 10:57:56,858 | database | INFO | DB session closed
+2025-06-28 10:57:56,858 | blog.main | INFO | ← PUT http://127.0.0.1:8000/blog/5 — 202
+2025-06-28 10:59:16,748 | blog.main | INFO | → POST http://127.0.0.1:8000/blog/
+2025-06-28 10:59:16,749 | database | INFO | DB session opened
+2025-06-28 10:59:16,750 | routers.blog | INFO | API call: POST /blog/
+2025-06-28 10:59:16,773 | database | INFO | DB session closed
+2025-06-28 10:59:16,774 | blog.main | INFO | ← POST http://127.0.0.1:8000/blog/ — 201
+2025-06-28 10:59:39,539 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:59:39,540 | database | INFO | DB session opened
+2025-06-28 10:59:39,541 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:59:39,548 | database | INFO | DB session closed
+2025-06-28 10:59:39,548 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:59:40,464 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:59:40,465 | database | INFO | DB session opened
+2025-06-28 10:59:40,467 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:59:40,471 | database | INFO | DB session closed
+2025-06-28 10:59:40,473 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:59:41,065 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:59:41,066 | database | INFO | DB session opened
+2025-06-28 10:59:41,067 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:59:41,073 | database | INFO | DB session closed
+2025-06-28 10:59:41,073 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:59:41,567 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:59:41,568 | database | INFO | DB session opened
+2025-06-28 10:59:41,569 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:59:41,578 | database | INFO | DB session closed
+2025-06-28 10:59:41,578 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:59:41,832 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:59:41,833 | database | INFO | DB session opened
+2025-06-28 10:59:41,834 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:59:41,839 | database | INFO | DB session closed
+2025-06-28 10:59:41,839 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:59:42,047 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:59:42,047 | database | INFO | DB session opened
+2025-06-28 10:59:42,048 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:59:42,052 | database | INFO | DB session closed
+2025-06-28 10:59:42,053 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:59:42,266 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:59:42,266 | database | INFO | DB session opened
+2025-06-28 10:59:42,268 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:59:42,278 | database | INFO | DB session closed
+2025-06-28 10:59:42,279 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:59:42,481 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:59:42,481 | database | INFO | DB session opened
+2025-06-28 10:59:42,482 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:59:42,486 | database | INFO | DB session closed
+2025-06-28 10:59:42,487 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:59:42,683 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:59:42,684 | database | INFO | DB session opened
+2025-06-28 10:59:42,685 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:59:42,689 | database | INFO | DB session closed
+2025-06-28 10:59:42,690 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:59:42,840 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:59:42,841 | database | INFO | DB session opened
+2025-06-28 10:59:42,842 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:59:42,845 | database | INFO | DB session closed
+2025-06-28 10:59:42,846 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:59:43,020 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:59:43,023 | database | INFO | DB session opened
+2025-06-28 10:59:43,023 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:59:43,028 | database | INFO | DB session closed
+2025-06-28 10:59:43,028 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:59:43,187 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:59:43,188 | database | INFO | DB session opened
+2025-06-28 10:59:43,188 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:59:43,193 | database | INFO | DB session closed
+2025-06-28 10:59:43,193 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:59:43,346 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:59:43,347 | database | INFO | DB session opened
+2025-06-28 10:59:43,348 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:59:43,353 | database | INFO | DB session closed
+2025-06-28 10:59:43,353 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:59:43,513 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:59:43,514 | database | INFO | DB session opened
+2025-06-28 10:59:43,515 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:59:43,519 | database | INFO | DB session closed
+2025-06-28 10:59:43,519 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:59:43,665 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:59:43,665 | database | INFO | DB session opened
+2025-06-28 10:59:43,667 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:59:43,673 | database | INFO | DB session closed
+2025-06-28 10:59:43,674 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:59:43,824 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:59:43,830 | database | INFO | DB session opened
+2025-06-28 10:59:43,832 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:59:43,841 | database | INFO | DB session closed
+2025-06-28 10:59:43,841 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:59:44,054 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:59:44,055 | database | INFO | DB session opened
+2025-06-28 10:59:44,057 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:59:44,063 | database | INFO | DB session closed
+2025-06-28 10:59:44,063 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 10:59:44,302 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 10:59:44,303 | database | INFO | DB session opened
+2025-06-28 10:59:44,303 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 10:59:44,307 | database | INFO | DB session closed
+2025-06-28 10:59:44,308 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:09,957 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:09,959 | database | INFO | DB session opened
+2025-06-28 11:00:09,959 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:09,964 | database | INFO | DB session closed
+2025-06-28 11:00:09,965 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:10,516 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:10,518 | database | INFO | DB session opened
+2025-06-28 11:00:10,519 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:10,524 | database | INFO | DB session closed
+2025-06-28 11:00:10,524 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:12,713 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:12,714 | database | INFO | DB session opened
+2025-06-28 11:00:12,715 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:12,720 | database | INFO | DB session closed
+2025-06-28 11:00:12,720 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:13,398 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:13,398 | database | INFO | DB session opened
+2025-06-28 11:00:13,399 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:13,406 | database | INFO | DB session closed
+2025-06-28 11:00:13,406 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:14,112 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:14,114 | database | INFO | DB session opened
+2025-06-28 11:00:14,115 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:14,119 | database | INFO | DB session closed
+2025-06-28 11:00:14,119 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:14,789 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:14,790 | database | INFO | DB session opened
+2025-06-28 11:00:14,792 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:14,798 | database | INFO | DB session closed
+2025-06-28 11:00:14,799 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:15,939 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:15,939 | database | INFO | DB session opened
+2025-06-28 11:00:15,940 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:15,945 | database | INFO | DB session closed
+2025-06-28 11:00:15,946 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:16,554 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:16,555 | database | INFO | DB session opened
+2025-06-28 11:00:16,556 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:16,563 | database | INFO | DB session closed
+2025-06-28 11:00:16,563 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:17,136 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:17,141 | database | INFO | DB session opened
+2025-06-28 11:00:17,142 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:17,148 | database | INFO | DB session closed
+2025-06-28 11:00:17,149 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:17,754 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:17,755 | database | INFO | DB session opened
+2025-06-28 11:00:17,755 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:17,760 | database | INFO | DB session closed
+2025-06-28 11:00:17,761 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:18,447 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:18,448 | database | INFO | DB session opened
+2025-06-28 11:00:18,449 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:18,455 | database | INFO | DB session closed
+2025-06-28 11:00:18,455 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:19,891 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:19,892 | database | INFO | DB session opened
+2025-06-28 11:00:19,894 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:19,902 | database | INFO | DB session closed
+2025-06-28 11:00:19,902 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:20,693 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:20,693 | database | INFO | DB session opened
+2025-06-28 11:00:20,694 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:20,700 | database | INFO | DB session closed
+2025-06-28 11:00:20,700 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:21,250 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:21,251 | database | INFO | DB session opened
+2025-06-28 11:00:21,252 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:21,257 | database | INFO | DB session closed
+2025-06-28 11:00:21,258 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:21,876 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:21,877 | database | INFO | DB session opened
+2025-06-28 11:00:21,878 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:21,883 | database | INFO | DB session closed
+2025-06-28 11:00:21,886 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:22,363 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:22,364 | database | INFO | DB session opened
+2025-06-28 11:00:22,365 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:22,371 | database | INFO | DB session closed
+2025-06-28 11:00:22,371 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:22,850 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:22,851 | database | INFO | DB session opened
+2025-06-28 11:00:22,853 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:22,857 | database | INFO | DB session closed
+2025-06-28 11:00:22,858 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:23,386 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:23,387 | database | INFO | DB session opened
+2025-06-28 11:00:23,389 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:23,394 | database | INFO | DB session closed
+2025-06-28 11:00:23,394 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:24,240 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:24,240 | database | INFO | DB session opened
+2025-06-28 11:00:24,241 | routers.blog | INFO | API call: GET /blog/
+2025-06-28 11:00:24,247 | database | INFO | DB session closed
+2025-06-28 11:00:24,248 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/ — 200
+2025-06-28 11:00:25,090 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/
+2025-06-28 11:00:25,090 | database | INFO | DB session opened
+2025-06-28 11:00:25,091 | routers.blog | INFO | API call: GET /blog/
