@@ -13,8 +13,8 @@ from elasticsearch import Elasticsearch
 LOG_PATH = os.path.join(LOG_DIRECTORY, LOG_NAME)
 ARCHIVE_DIR = os.path.join(LOG_DIRECTORY, "archive")
 
-MAX_LOG_SIZE = 20 * 1024  
-BACKUP_COUNT = 10 
+MAX_LOG_SIZE = 2 * 1024 * 1024 
+BACKUP_COUNT = 30
 
 
 class ArchiveTimedRotatingFileHandler(TimedRotatingFileHandler):
@@ -170,16 +170,16 @@ def setup_logging():
 #             return False
 
 
-# # def archive_rotated_logs(rotated_file_path):
-# #     try:
-# #         filename = os.path.basename(rotated_file_path)
-# #         date_prefix = datetime.datetime.utcnow().strftime("%Y-%m-%d")
-# #         archived_name = f"{date_prefix}-{filename}"
-# #         dst_path = os.path.join(ARCHIVE_DIR, archived_name)
-# #         shutil.move(rotated_file_path, dst_path)
-# #         logger.info(f"Archived {rotated_file_path} → {dst_path}")
-# #     except Exception as e:
-# #         logger.error(f"Error archiving log: {e}")
+# def archive_rotated_logs(rotated_file_path):
+#     try:
+#         filename = os.path.basename(rotated_file_path)
+#         date_prefix = datetime.datetime.utcnow().strftime("%Y-%m-%d")
+#         archived_name = f"{date_prefix}-{filename}"
+#         dst_path = os.path.join(ARCHIVE_DIR, archived_name)
+#         shutil.move(rotated_file_path, dst_path)
+#         logger.info(f"Archived {rotated_file_path} → {dst_path}")
+#     except Exception as e:
+#         logger.error(f"Error archiving log: {e}")
 
 
 # def setup_logging() -> None:

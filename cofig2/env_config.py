@@ -3,8 +3,8 @@ import urllib.parse
 from pathlib import Path
 
 ##############################
-#ENVIRONMENT = "development"
-ENVIRONMENT = "production"
+ENVIRONMENT = "development"
+#ENVIRONMENT = "production"
 ##############################
 
 BASE_DIR = Path(__file__).resolve().parent

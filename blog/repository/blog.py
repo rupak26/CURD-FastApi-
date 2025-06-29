@@ -68,7 +68,7 @@ async def create(request:BLog2 , db : Session , id : int):
 
 def delete_by_id(id , db : Session):
     try:
-        blog = db.query(models.Blog).filter(models.Blog.id==id)
+        blog = db.query(models.Blog).filter(models.Blog.id==id).first()
         if not blog:
             logger.error(f"{id} is Not found")
             return ApiResponse(
@@ -82,7 +82,7 @@ def delete_by_id(id , db : Session):
                 message = "Blog deleted" ,
                 statusCode =  204 ,
                 datalist = []
-            )
+        )
     except Exception as e:
         logger.error(f"{e}")
 
