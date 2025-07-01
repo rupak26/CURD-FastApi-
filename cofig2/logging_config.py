@@ -8,7 +8,7 @@ from cofig2.env_config import (
 from logging.handlers import SMTPHandler
 from datetime import datetime
 from logging import Handler
-from elasticsearch import Elasticsearch
+
 
 LOG_PATH = os.path.join(LOG_DIRECTORY, LOG_NAME)
 ARCHIVE_DIR = os.path.join(LOG_DIRECTORY, "archive")
@@ -17,7 +17,9 @@ MAX_LOG_SIZE = 2 * 1024 * 1024
 BACKUP_COUNT = 30
 
 
+
 class ArchiveTimedRotatingFileHandler(TimedRotatingFileHandler):
+
     def __init__(self, filename, when='midnight', interval=1, backupCount=7,
                  encoding=None, utc=False, archive_dir=None, **kwargs):
         if archive_dir is None:
@@ -76,8 +78,11 @@ class ArchiveTimedRotatingFileHandler(TimedRotatingFileHandler):
                 self.rollover_index += 1
 
 
+def log_event(level, message):
+    logger = logging.getLogger()
+    logger.log(getattr(logging, level.upper()), message)
 
-
+   
 def setup_logging():
 
     file_handler = ArchiveTimedRotatingFileHandler(
@@ -110,6 +115,7 @@ def setup_logging():
     else:
         file_handler.setLevel(logging.ERROR)
         console_level = logging.ERROR
+        log_event("ERROR", "Logger set to ERROR level due to environment")
       #  mail_handler.setLevel(logging.ERROR)
       # mail_handler.setFormatter(formatter)
        
@@ -125,8 +131,8 @@ def setup_logging():
     root_logger.addHandler(console_handler)
   #  root_logger.addHandler(mail_handler)
         
-   
-    
+
+
 
 # import datetime
 # import os

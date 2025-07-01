@@ -17,14 +17,16 @@ def create_user(request: User2, db: Session):
     new_user = models.User(
         username=request.username,
         email=request.email,
-        password=Hasing.hashPassword(request.password)
+        password=Hasing.hashPassword(request.password),
+        role=request.role
     )
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
     data =  {
         "userName": new_user.username,
-        "email": new_user.email
+        "email": new_user.email,
+        "role": new_user.role
     }
     return ApiResponse(
             message = f"New User Created" ,
@@ -50,17 +52,16 @@ def show_all_user(db : Session):
 
 def show_user_by_id(id : int  , db : Session):
     users = db.query(models.User).filter(models.User.id == id).first() 
-    user = showUser.from_orm(users)
-    if user is None:
+    if users is None:
         return ApiResponse(
             message = f"User with id {id} not found"  ,
             statusCode =  404 ,
             datalist = []
         )
+    user = showUser.from_orm(users)
     return ApiResponse(
         message = "Fatching was successfull" ,
         statusCode = status.HTTP_200_OK  ,
         datalist = user
     )
 
-#

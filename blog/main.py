@@ -2,7 +2,6 @@ from fastapi import (
              FastAPI , APIRouter , HTTPException , 
              WebSocket , WebSocketDisconnect , status , Request
 )
-from fastapi.responses import HTMLResponse
 from .domain import models
 from .Database import engine
 from .routers import user , blog , authentications
@@ -47,30 +46,6 @@ async def start_ping_loop():
     asyncio.create_task(manager.send_ping())
 
 
-@app.get("/")
-async def get():
-    return HTMLResponse('''
-        <!DOCTYPE html>
-        <html>
-        <body>
-            <h2>Blog Notification</h2>
-            <ul id="notifications"></ul>
-            <script>      
-                let ws = new WebSocket("ws://localhost:8000/ws/notifications");         
-                ws.onmessage = function(event) {
-                    if (event.data === "ping") {
-                        ws.send("pong");
-                    } else {
-                        console.log("Received:", event.data);
-                        let item = document.createElement("li");
-                        item.textContent = event.data;
-                        document.getElementById("notifications").appendChild(item);
-                    }
-                };
-            </script>
-        </body>
-        </html>
-    ''')
 
 
 @app.middleware("http")

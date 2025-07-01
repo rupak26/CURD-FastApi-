@@ -3,22 +3,54 @@ from ..domain.schemas import BLog2 , User2 , showBlog , showUser , BLogPatch
 from ..domain import models
 from ..Database import engine , SessionLocal , get_db
 from ..hasing import Hasing
+from fastapi.responses import HTMLResponse
 from  sqlalchemy.orm import Session  
 from  typing import List , Any
 from .oauth2 import get_current_user
 from ..repository import blog
-from ..core import swagger_doc as s
+from ..core import swagger_doc as s 
 from ..response.schema import ApiResponse
 import logging 
 
 logger = logging.getLogger("routers.blog")
 
+
 router = APIRouter(
-    prefix='/blog' ,
-    tags=['Blogs']
+    prefix='/api/v1/blog' ,
+    tags=['Blogs'] ,
+    dependencies= [Depends(get_current_user)] 
 )
 
-@router.post('/' ,
+@router.get('/notifications',
+            summary="New Blog created",
+            description=s.notification_desc,
+            status_code= status.HTTP_200_OK)
+def notifications():
+    logger.info(f"Notifications to see")
+    return HTMLResponse('''
+        <!DOCTYPE html>
+        <html>
+        <body>
+            <h2>Blog Notification</h2>
+            <ul id="notifications"></ul>
+            <script>      
+                let ws = new WebSocket("ws://localhost:8000/ws/notifications");         
+                ws.onmessage = function(event) {
+                    if (event.data === "ping") {
+                        ws.send("pong");
+                    } else {
+                        console.log("Received:", event.data);
+                        let item = document.createElement("li");
+                        item.textContent = event.data;
+                        document.getElementById("notifications").appendChild(item);
+                    }
+                };
+            </script>
+        </body>
+        </html>
+    ''')
+
+@router.post('/creste_post/' ,
               summary="Create new blog",
               description=s.blog_desc, 
               status_code= status.HTTP_201_CREATED)
@@ -27,55 +59,55 @@ async def create(request:BLog2 , db : Session = Depends(get_db),get_current_user
     return await blog.create(request , db ,  get_current_user)
 
 # Customize request_model via using response schema 
-@router.get('/' ,
+@router.get('/get_all_blogs/' ,
             summary="Get all Blog",
             description='''
             Get all Blogs from Database
             ''',
             status_code= status.HTTP_200_OK, response_model = ApiResponse)
-def details(db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
+def details(db : Session = Depends(get_db)):
     logger.info(f"API call: GET /blog/")
     return blog.get_all(db)
 
 
-@router.get('/{id}' ,
+@router.get('/get_blog/{id}' ,
             summary="Get individual Blog via Id",
             description='''
             Get individual Blog via Id 
             ''',
             status_code= status.HTTP_200_OK,
             response_model= ApiResponse)
-def details_by_id(id , db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
+def details_by_id(id , db : Session = Depends(get_db)):
     logger.info(f"API call: GET /blog/{id}")
     return blog.get_by_id(id , db)
 
-@router.delete('/{id}' ,
+@router.delete('/delete_blog/{id}' ,
                summary="Delete Blog via Id",
                description='''Delete the blog of this id''' ,
                status_code=status.HTTP_200_OK,
                response_model= ApiResponse)
-def distroy_by_id(id , db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
+def distroy_by_id(id , db : Session = Depends(get_db)):
     logger.info(f"API call: DELETE /blog/{id}")
     return blog.delete_by_id(id,db)
 
 
-@router.put('/{id}', 
+@router.put('/update_blog/{id}', 
             summary="Update Blog via Id" ,
             description='''
             Logged User can update the blog of this id
             ''',status_code=status.HTTP_202_ACCEPTED,
             response_model= ApiResponse)
-def update_by_id(request:BLog2 , id:int ,  db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
+def update_by_id(request:BLog2 , id:int ,  db : Session = Depends(get_db)):
     logger.info(f"API call: PUT /blog/{id}")
     return blog.updated_by_id(id , request , db)
 
-@router.patch('/{id}',
+@router.patch('/update_blog/{id}',
               summary="Update Blog partiali via id",
               description='''
                Logged User can partiali update the blog of this id
               ''',status_code=status.HTTP_202_ACCEPTED,
               response_model= ApiResponse)
-def update_Partiali_by_id(request:BLogPatch , id:int , db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
+def update_Partiali_by_id(request:BLogPatch , id:int , db : Session = Depends(get_db)):
     logger.info(f"API call: PATCH /blog/{id}")
     return blog.updatedPartiali_by_id(id , request  , db)
 

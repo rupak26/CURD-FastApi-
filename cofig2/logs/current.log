@@ -1,24 +1,37 @@
-2025-07-01 12:18:23,034 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/50
-2025-07-01 12:18:23,035 | database | INFO | DB session opened
-2025-07-01 12:18:23,036 | database | ERROR | DB session error: 401: Could not validate credentials
-2025-07-01 12:18:23,037 | database | INFO | DB session closed
-2025-07-01 12:18:23,038 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/50 — 401
-2025-06-29 16:53:46,543 | blog.main | INFO | → GET http://127.0.0.1:8000/docs
-2025-06-29 16:53:46,544 | blog.main | INFO | ← GET http://127.0.0.1:8000/docs — 200
-2025-06-29 16:53:46,746 | blog.main | INFO | → GET http://127.0.0.1:8000/openapi.json
-2025-06-29 16:53:46,754 | blog.main | INFO | ← GET http://127.0.0.1:8000/openapi.json — 200
-2025-06-29 17:37:00,634 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/90
-2025-06-29 17:37:00,688 | database | INFO | DB session opened
-2025-06-29 17:37:00,692 | database | ERROR | DB session error: 401: Not authenticated
-2025-06-29 17:37:00,701 | database | INFO | DB session closed
-2025-06-29 17:37:00,704 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/90 — 401
-2025-06-29 17:38:50,625 | blog.main | INFO | → POST http://127.0.0.1:8000/login
-2025-06-29 17:38:50,658 | database | INFO | DB session opened
-2025-06-29 17:38:51,130 | database | INFO | DB session closed
-2025-06-29 17:38:51,130 | blog.main | INFO | ← POST http://127.0.0.1:8000/login — 200
-2025-06-29 17:38:56,068 | blog.main | INFO | → GET http://127.0.0.1:8000/blog/90
-2025-06-29 17:38:56,068 | database | INFO | DB session opened
-2025-06-29 17:38:56,076 | routers.blog | INFO | API call: GET /blog/90
-2025-06-29 17:38:56,083 | repository.blog | ERROR | 90 is Not found
-2025-06-29 17:38:56,086 | database | INFO | DB session closed
-2025-06-29 17:38:56,086 | blog.main | INFO | ← GET http://127.0.0.1:8000/blog/90 — 200
+2025-07-01 10:38:14,360 | asyncio | ERROR | Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<ConnectionManager.send_ping() done, defined at /home/user/FastAPI3/CURD-FastApi-/blog/socket/configuration.py:26> exception=TypeError("unsupported operand type(s) for -: 'builtin_function_or_method' and 'float'")>
+Traceback (most recent call last):
+  File "/home/user/FastAPI3/CURD-FastApi-/blog/socket/configuration.py", line 30, in send_ping
+    if now - self.last_pong.get(connection, 0) > 30:
+       ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'builtin_function_or_method' and 'float'
+2025-07-01 11:14:33,075 | asyncio | ERROR | Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<ConnectionManager.send_ping() done, defined at /home/user/FastAPI3/CURD-FastApi-/blog/socket/configuration.py:26> exception=TypeError("unsupported operand type(s) for -: 'builtin_function_or_method' and 'float'")>
+Traceback (most recent call last):
+  File "/home/user/FastAPI3/CURD-FastApi-/blog/socket/configuration.py", line 30, in send_ping
+    if now - self.last_pong.get(connection, 0) > 30:
+       ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'builtin_function_or_method' and 'float'
+2025-07-01 14:14:05,541 | database | ERROR | DB session error: 1 validation error for showUser
+  Input should be a valid dictionary or object to extract fields from [type=model_attributes_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/model_attributes_type
+2025-07-01 14:16:31,819 | database | ERROR | DB session error: 1 validation error for showUser
+  Input should be a valid dictionary or object to extract fields from [type=model_attributes_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/model_attributes_type
+2025-07-01 14:17:27,299 | database | ERROR | DB session error: 1 validation error for showUser
+  Input should be a valid dictionary or object to extract fields from [type=model_attributes_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/model_attributes_type
+2025-07-01 14:18:21,963 | database | ERROR | DB session error: 1 validation error for showUser
+  Input should be a valid dictionary or object to extract fields from [type=model_attributes_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/model_attributes_type
+2025-07-01 14:19:57,611 | database | ERROR | DB session error: Unable to serialize unknown type: <class 'blog.domain.models.User'>
+2025-07-01 15:53:44,747 | database | ERROR | DB session error: (psycopg2.errors.UndefinedColumn) column users.role does not exist
+LINE 1: ...AS users_email, users.password AS users_password, users.role...
+                                                             ^
+
+[SQL: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password AS users_password, users.role AS users_role 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'username_1': 'Faria', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/f405)

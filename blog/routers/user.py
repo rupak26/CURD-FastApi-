@@ -9,11 +9,11 @@ from ..repository import user
 from ..response.schema import ApiResponse
 
 router = APIRouter(
-    prefix= '/user',
+    prefix= '/api/v1/user',
     tags=['User'] 
 ) 
 
-@router.post('/', 
+@router.post('/create-user/', 
              summary="Create new user"  , 
              description='''
              Create New Users
@@ -23,7 +23,7 @@ router = APIRouter(
 def create_user_route(request: User2, db: Session = Depends(get_db)):
     return user.create_user(request, db)
 
-@router.get('/',
+@router.get('/get-all-users/',
             summary="Get all user",
             description='''
             Get all users
@@ -33,7 +33,7 @@ def create_user_route(request: User2, db: Session = Depends(get_db)):
 def show_user(db : Session = Depends(get_db)):
     return user.show_all_user(db)
 
-@router.get('/{id}',
+@router.get('/get-user/{id}',
             summary="Get individul user",
             description='''
             Get individul user based upon their id

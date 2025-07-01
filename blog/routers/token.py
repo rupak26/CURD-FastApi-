@@ -26,9 +26,15 @@ def verify_token(token : str , credentials_exception , db: Session = Depends(get
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         user_id: int = payload.get("user_id")
         email: str = payload.get("email")
-        if not email or not user_id:
+        role: str = payload.get("role")
+
+        if not email or not user_id or not role:
             raise credentials_exception
         token_data = TokenData(email=email)
     except JWTError:
         raise credentials_exception
-    return user_id
+    return {
+        "user_id": user_id,
+        "email": email,
+        "role": role
+    }
