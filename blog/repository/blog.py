@@ -58,7 +58,7 @@ async def create(request:BLog2 , db : Session , id : int):
         await manager.broadcast(f"New blog created by {user.username} titled {new_blog.title}")
         result =  showBlog.from_orm(new_blog)
         return ApiResponse(
-            message = "Fatching was successfull" ,
+            message = "Posting was successfull" ,
             statusCode = 200 ,
             datalist = result
         )

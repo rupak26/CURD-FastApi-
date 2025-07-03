@@ -21,13 +21,13 @@ def create_access_token(data: dict):
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
+
 def verify_token(token : str , credentials_exception , db: Session = Depends(get_db)):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         user_id: int = payload.get("user_id")
         email: str = payload.get("email")
-        role: str = payload.get("role")
-
+        role: str = payload.get("user_role")
         if not email or not user_id or not role:
             raise credentials_exception
         token_data = TokenData(email=email)

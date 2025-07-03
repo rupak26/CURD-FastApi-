@@ -6,7 +6,7 @@ from ..hasing import Hasing
 from fastapi.responses import HTMLResponse
 from  sqlalchemy.orm import Session  
 from  typing import List , Any
-from .oauth2 import get_current_user
+from .oauth2 import get_current_user , role_required
 from ..repository import blog
 from ..core import swagger_doc as s 
 from ..response.schema import ApiResponse
@@ -18,37 +18,9 @@ logger = logging.getLogger("routers.blog")
 router = APIRouter(
     prefix='/api/v1/blog' ,
     tags=['Blogs'] ,
-    dependencies= [Depends(get_current_user)] 
+    dependencies= [Depends(role_required(["user" , "admin"]))] 
 )
 
-@router.get('/notifications',
-            summary="New Blog created",
-            description=s.notification_desc,
-            status_code= status.HTTP_200_OK)
-def notifications():
-    logger.info(f"Notifications to see")
-    return HTMLResponse('''
-        <!DOCTYPE html>
-        <html>
-        <body>
-            <h2>Blog Notification</h2>
-            <ul id="notifications"></ul>
-            <script>      
-                let ws = new WebSocket("ws://localhost:8000/ws/notifications");         
-                ws.onmessage = function(event) {
-                    if (event.data === "ping") {
-                        ws.send("pong");
-                    } else {
-                        console.log("Received:", event.data);
-                        let item = document.createElement("li");
-                        item.textContent = event.data;
-                        document.getElementById("notifications").appendChild(item);
-                    }
-                };
-            </script>
-        </body>
-        </html>
-    ''')
 
 @router.post('/creste_post/' ,
               summary="Create new blog",
@@ -56,7 +28,7 @@ def notifications():
               status_code= status.HTTP_201_CREATED)
 async def create(request:BLog2 , db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
     logger.info(f"API call: POST /blog/")
-    return await blog.create(request , db ,  get_current_user)
+    return await blog.create(request , db ,  get_current_user["user_id"])
 
 # Customize request_model via using response schema 
 @router.get('/get_all_blogs/' ,

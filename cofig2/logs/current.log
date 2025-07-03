@@ -1,37 +1,45 @@
-2025-07-01 10:38:14,360 | asyncio | ERROR | Task exception was never retrieved
-future: <Task finished name='Task-3' coro=<ConnectionManager.send_ping() done, defined at /home/user/FastAPI3/CURD-FastApi-/blog/socket/configuration.py:26> exception=TypeError("unsupported operand type(s) for -: 'builtin_function_or_method' and 'float'")>
-Traceback (most recent call last):
-  File "/home/user/FastAPI3/CURD-FastApi-/blog/socket/configuration.py", line 30, in send_ping
-    if now - self.last_pong.get(connection, 0) > 30:
-       ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-TypeError: unsupported operand type(s) for -: 'builtin_function_or_method' and 'float'
-2025-07-01 11:14:33,075 | asyncio | ERROR | Task exception was never retrieved
-future: <Task finished name='Task-3' coro=<ConnectionManager.send_ping() done, defined at /home/user/FastAPI3/CURD-FastApi-/blog/socket/configuration.py:26> exception=TypeError("unsupported operand type(s) for -: 'builtin_function_or_method' and 'float'")>
-Traceback (most recent call last):
-  File "/home/user/FastAPI3/CURD-FastApi-/blog/socket/configuration.py", line 30, in send_ping
-    if now - self.last_pong.get(connection, 0) > 30:
-       ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-TypeError: unsupported operand type(s) for -: 'builtin_function_or_method' and 'float'
-2025-07-01 14:14:05,541 | database | ERROR | DB session error: 1 validation error for showUser
-  Input should be a valid dictionary or object to extract fields from [type=model_attributes_type, input_value=None, input_type=NoneType]
-    For further information visit https://errors.pydantic.dev/2.11/v/model_attributes_type
-2025-07-01 14:16:31,819 | database | ERROR | DB session error: 1 validation error for showUser
-  Input should be a valid dictionary or object to extract fields from [type=model_attributes_type, input_value=None, input_type=NoneType]
-    For further information visit https://errors.pydantic.dev/2.11/v/model_attributes_type
-2025-07-01 14:17:27,299 | database | ERROR | DB session error: 1 validation error for showUser
-  Input should be a valid dictionary or object to extract fields from [type=model_attributes_type, input_value=None, input_type=NoneType]
-    For further information visit https://errors.pydantic.dev/2.11/v/model_attributes_type
-2025-07-01 14:18:21,963 | database | ERROR | DB session error: 1 validation error for showUser
-  Input should be a valid dictionary or object to extract fields from [type=model_attributes_type, input_value=None, input_type=NoneType]
-    For further information visit https://errors.pydantic.dev/2.11/v/model_attributes_type
-2025-07-01 14:19:57,611 | database | ERROR | DB session error: Unable to serialize unknown type: <class 'blog.domain.models.User'>
-2025-07-01 15:53:44,747 | database | ERROR | DB session error: (psycopg2.errors.UndefinedColumn) column users.role does not exist
-LINE 1: ...AS users_email, users.password AS users_password, users.role...
-                                                             ^
-
-[SQL: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password AS users_password, users.role AS users_role 
-FROM users 
-WHERE users.username = %(username_1)s 
- LIMIT %(param_1)s]
-[parameters: {'username_1': 'Faria', 'param_1': 1}]
+2025-07-02 12:00:12,528 | repository.blog | ERROR | (psycopg2.ProgrammingError) can't adapt type 'dict'
+[SQL: INSERT INTO blog (title, body, user_id) VALUES (%(title)s, %(body)s, %(user_id)s) RETURNING blog.id]
+[parameters: {'title': 'Cyber Stalking', 'body': 'Criminal Offence', 'user_id': {'user_id': 1, 'email': 'r@gmail.com', 'role': 'user'}}]
 (Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-02 12:01:26,073 | repository.blog | ERROR | (psycopg2.ProgrammingError) can't adapt type 'dict'
+[SQL: INSERT INTO blog (title, body, user_id) VALUES (%(title)s, %(body)s, %(user_id)s) RETURNING blog.id]
+[parameters: {'title': 'Cyber Stalking', 'body': 'Criminal Offence', 'user_id': {'user_id': 1, 'email': 'r@gmail.com', 'role': 'user'}}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-02 12:03:20,995 | database | ERROR | DB session error: 'dict' object has no attribute 'user_id'
+2025-07-02 12:04:15,460 | asyncio | ERROR | Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<ConnectionManager.send_ping() done, defined at /home/user/FastAPI3/CURD-FastApi-/blog/socket/configuration.py:26> exception=TypeError("unsupported operand type(s) for -: 'builtin_function_or_method' and 'float'")>
+Traceback (most recent call last):
+  File "/home/user/FastAPI3/CURD-FastApi-/blog/socket/configuration.py", line 30, in send_ping
+    if now - self.last_pong.get(connection, 0) > 30:
+       ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'builtin_function_or_method' and 'float'
+2025-07-02 12:15:55,389 | repository.blog | ERROR | Database is empty
+2025-07-02 12:16:56,743 | asyncio | ERROR | Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<ConnectionManager.send_ping() done, defined at /home/user/FastAPI3/CURD-FastApi-/blog/socket/configuration.py:26> exception=TypeError("unsupported operand type(s) for -: 'builtin_function_or_method' and 'float'")>
+Traceback (most recent call last):
+  File "/home/user/FastAPI3/CURD-FastApi-/blog/socket/configuration.py", line 30, in send_ping
+    if now - self.last_pong.get(connection, 0) > 30:
+       ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'builtin_function_or_method' and 'float'
+2025-07-02 12:45:17,861 | asyncio | ERROR | Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<ConnectionManager.send_ping() done, defined at /home/user/FastAPI3/CURD-FastApi-/blog/socket/configuration.py:26> exception=TypeError("unsupported operand type(s) for -: 'builtin_function_or_method' and 'float'")>
+Traceback (most recent call last):
+  File "/home/user/FastAPI3/CURD-FastApi-/blog/socket/configuration.py", line 30, in send_ping
+    if now - self.last_pong.get(connection, 0) > 30:
+       ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'builtin_function_or_method' and 'float'
+2025-07-02 12:50:42,475 | asyncio | ERROR | Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<ConnectionManager.send_ping() done, defined at /home/user/FastAPI3/CURD-FastApi-/blog/socket/configuration.py:26> exception=TypeError("unsupported operand type(s) for -: 'builtin_function_or_method' and 'float'")>
+Traceback (most recent call last):
+  File "/home/user/FastAPI3/CURD-FastApi-/blog/socket/configuration.py", line 30, in send_ping
+    if now - self.last_pong.get(connection, 0) > 30:
+       ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'builtin_function_or_method' and 'float'
+2025-07-02 14:34:43,413 | asyncio | ERROR | Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<ConnectionManager.send_ping() done, defined at /home/user/FastAPI3/CURD-FastApi-/blog/socket/configuration.py:26> exception=TypeError("unsupported operand type(s) for -: 'builtin_function_or_method' and 'float'")>
+Traceback (most recent call last):
+  File "/home/user/FastAPI3/CURD-FastApi-/blog/socket/configuration.py", line 30, in send_ping
+    if now - self.last_pong.get(connection, 0) > 30:
+       ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'builtin_function_or_method' and 'float'

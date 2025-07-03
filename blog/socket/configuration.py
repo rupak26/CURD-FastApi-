@@ -20,8 +20,15 @@ class ConnectionManager:
            del self.last_pong[websocket]
 
     async def broadcast(self, message: str):
+        disconnected = []
         for connection in self.active_connections:
-            await connection.send_text(message)
+            try:
+                await connection.send_json(message)
+            except Exception:
+                disconnected.append(connection)
+        # Remove any connections that failed
+        for conn in disconnected:
+            self.disconnect(conn)
 
     async def send_ping(self):
         while True:

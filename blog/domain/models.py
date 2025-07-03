@@ -1,5 +1,5 @@
 from ..Database import Base , engine 
-from sqlalchemy import Column , Integer , String , ForeignKey 
+from sqlalchemy import Column , Integer , String , ForeignKey , Text, DateTime, func
 from sqlalchemy.orm import relationship 
 
 
@@ -25,3 +25,4 @@ class User(Base):
     
     
     blogs = relationship("Blog" , back_populates = "creator")
+

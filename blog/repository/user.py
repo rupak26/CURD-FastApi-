@@ -16,7 +16,7 @@ def create_user(request: User2, db: Session):
         )
     new_user = models.User(
         username=request.username,
-        email=request.email,
+        email=request.email,                                                                                                         
         password=Hasing.hashPassword(request.password),
         role=request.role
     )

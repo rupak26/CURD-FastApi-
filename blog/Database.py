@@ -4,6 +4,8 @@ from sqlalchemy.orm import sessionmaker
 import os , logging
 from dotenv import load_dotenv
 from cofig2.env_config import PRIMARY_DB_URL as DATABASE_URL
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.orm import sessionmaker, declarative_base
 
 logger = logging.getLogger("database")
 load_dotenv()
@@ -26,3 +28,5 @@ def get_db():
     finally:
         db.close()
         logger.info("DB session closed")
+
+

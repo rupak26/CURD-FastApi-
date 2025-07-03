@@ -1,49 +1,69 @@
 from fastapi import (
-             FastAPI , APIRouter , HTTPException , 
+             FastAPI , APIRouter , HTTPException , Depends , Query ,
              WebSocket , WebSocketDisconnect , status , Request
 )
-from .domain import models
+from typing import List 
+from .domain import models , schemas
 from .Database import engine
 from .routers import user , blog , authentications
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse , HTMLResponse
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError 
 from .socket.configuration import manager
 from .response.schema import ApiResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
-import logging
+import logging , os
 from cofig2.logging_config import setup_logging
 import time , asyncio
-
-
+from sqlalchemy import insert, select
+from .core import swagger_doc as s 
+from .routers.oauth2 import role_required
+from .routers.token import verify_token
+from sqlalchemy.ext.asyncio import AsyncSession
+from jose import JWTError, jwt
+from .routers.token import verify_token
 setup_logging()
 logger = logging.getLogger(__name__)
 app = FastAPI() 
-
-
 models.Base.metadata.create_all(engine) 
 
-@app.websocket("/ws/notifications")
-async def websocket_endpoint(websocket: WebSocket):
+
+# Utility to extract the token from the query parameters or headers
+async def get_jwt_token(websocket: WebSocket):
+    # Try to get the token from query parameters
+    token = websocket.query_params.get("token")
+    if not token:
+        # If no token is passed, try the headers
+        token = websocket.headers.get("Authorization")
+        #print(f"Token from headers------->: {token}")
+        if token:
+            token = token.split(" ")[1]  # Bearer token format
+    return token
+
+# Secure WebSocket endpoint
+@app.websocket("/wss")
+async def websocket_endpoint(websocket: WebSocket, token: str = Depends(get_jwt_token)):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    payload = verify_token(token , credentials_exception)
+  #  print(f"Payload from token-----12-->: {payload}")
+    if not payload["user_id"]:
+        raise HTTPException(status_code=401, detail="Invalid or expired token")
+    
     await manager.connect(websocket)
     try:
         while True:
-            data = await websocket.receive_text()  # keep alive, or handle incoming messages
-            if data == "pong":
-                manager.last_pong[websocket] = time.time()
-            else:
-                await manager.broadcast(f"Message: {data}")
-    except WebSocketDisconnect:
-        await manager.disconnect(websocket)
+            data = await websocket.receive_text()
+            await websocket.send_text(f"Received your message: {data}")
 
-@app.get("/test-broadcast")
-async def test_broadcast():
-    await manager.broadcast("🚨 New blog created!")
-    return {"message": "Broadcast sent"}
+    except Exception:
+        manager.disconnect(websocket)
+    finally:
+        manager.disconnect(websocket)
 
-@app.on_event("startup")
-async def start_ping_loop():
-    asyncio.create_task(manager.send_ping())
 
 
 

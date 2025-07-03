@@ -3,6 +3,7 @@ from ..Database import get_db
 from ..domain import models
 from fastapi import Depends, FastAPI , status , Response , HTTPException , APIRouter
 from sqlalchemy.orm import Session  
+from .oauth2 import role_required
 from ..hasing import Hasing
 from typing import List
 from ..repository import user
@@ -10,7 +11,8 @@ from ..response.schema import ApiResponse
 
 router = APIRouter(
     prefix= '/api/v1/user',
-    tags=['User'] 
+    tags=['User'] ,
+    dependencies= [Depends(role_required(["admin"]))] 
 ) 
 
 @router.post('/create-user/', 
