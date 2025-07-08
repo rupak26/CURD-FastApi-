@@ -4,6 +4,7 @@ from fastapi import (
 )
 from typing import List 
 from .domain import models , schemas
+
 from .Database import engine
 from .routers import user , blog , authentications
 from fastapi.exceptions import RequestValidationError
@@ -26,6 +27,7 @@ setup_logging()
 logger = logging.getLogger(__name__)
 app = FastAPI() 
 models.Base.metadata.create_all(engine) 
+
 
 
 # Utility to extract the token from the query parameters or headers
