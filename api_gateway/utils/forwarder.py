@@ -3,9 +3,6 @@ from fastapi import Request, Response
 
 async def forward_request(request: Request, target_url: str) -> Response:
     method = request.method.lower()
-    print("============================================================")
-    print(method, target_url)
-    print("============================================================")
     body = await request.body()
     headers = dict(request.headers)
     headers.pop("host", None)

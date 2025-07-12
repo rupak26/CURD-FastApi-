@@ -1,18 +1,17 @@
-from ..domain.schemas import BLog2 , User2 , showBlog , showUser
-from ..Database import get_db
-from ..domain import models
+from schemas import  User2 , showUser
+from database import get_db
+from models import User
 from fastapi import Depends, FastAPI , status , Response , HTTPException , APIRouter
 from sqlalchemy.orm import Session  
-from .oauth2 import role_required
-from ..hasing import Hasing
+from utils.oauth2 import role_required
+from utils.hasing import Hasing
 from typing import List
-from ..repository import user
-from ..response.schema import ApiResponse
+from repository import user
+from response.schema import ApiResponse
 
 router = APIRouter(
-    prefix= '/api/v1/user',
-    tags=['User'] ,
-    dependencies= [Depends(role_required(["admin"]))] 
+    prefix= '/api/v1/auth/user',
+    tags=['User'] 
 ) 
 
 @router.post('/create-user/', 

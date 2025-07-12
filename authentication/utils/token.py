@@ -1,8 +1,6 @@
 from datetime import datetime, timedelta, timezone
 import email
-from ..domain.schemas import TokenData
-from ..domain import models
-from ..Database import get_db
+from database import get_db
 from fastapi import Depends , HTTPException
 from  sqlalchemy.orm import Session  
 import os 
@@ -10,7 +8,6 @@ import os
 SECRET_KEY = os.getenv("SECRET_KEY") 
 ALGORITHM = os.getenv("ALGORITHM") 
 ACCESS_TOKEN_EXPIRE_MINUTES = os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES")
-
 
 from jose import JWTError, jwt
 
@@ -22,7 +19,7 @@ def create_access_token(data: dict):
     return encoded_jwt
 
 
-def verify_token(token : str , credentials_exception , db: Session = Depends(get_db)):
+def verify_token(token : str , credentials_exception):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         user_id: int = payload.get("user_id")
@@ -30,7 +27,6 @@ def verify_token(token : str , credentials_exception , db: Session = Depends(get
         role: str = payload.get("user_role")
         if not email or not user_id or not role:
             raise credentials_exception
-        token_data = TokenData(email=email)
     except JWTError:
         raise credentials_exception
     return {

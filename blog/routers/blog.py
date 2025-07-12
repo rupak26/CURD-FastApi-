@@ -2,11 +2,9 @@ from fastapi import Depends, FastAPI , status , Response , HTTPException , APIRo
 from ..domain.schemas import BLog2 , User2 , showBlog , showUser , BLogPatch 
 from ..domain import models
 from ..Database import engine , SessionLocal , get_db
-from ..hasing import Hasing
 from fastapi.responses import HTMLResponse
 from  sqlalchemy.orm import Session  
 from  typing import List , Any
-from .oauth2 import get_current_user , role_required
 from ..repository import blog
 from ..core import swagger_doc as s 
 from ..response.schema import ApiResponse
@@ -18,7 +16,6 @@ logger = logging.getLogger("routers.blog")
 router = APIRouter(
     prefix='/api/v1/blog' ,
     tags=['Blogs'] ,
-    dependencies= [Depends(role_required(["user" , "admin"]))] 
 )
 
 
@@ -26,9 +23,9 @@ router = APIRouter(
               summary="Create new blog",
               description=s.blog_desc, 
               status_code= status.HTTP_201_CREATED)
-async def create(request:BLog2 , db : Session = Depends(get_db),get_current_user : User2 = Depends(get_current_user)):
+async def create(request:BLog2 , db : Session = Depends(get_db)):
     logger.info(f"API call: POST /blog/")
-    return await blog.create(request , db ,  get_current_user["user_id"])
+    return await blog.create(request , db )
 
 # Customize request_model via using response schema 
 @router.get('/get_all_blogs/' ,

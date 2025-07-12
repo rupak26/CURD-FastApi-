@@ -1,20 +1,20 @@
-from ..domain import models
+from models import User
 from sqlalchemy.orm import Session 
-from ..domain.schemas import  User2 ,  showUser
-from ..hasing import Hasing
+from schemas import  User2 ,  showUser
+from utils.hasing import Hasing
 from fastapi import HTTPException , status
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
-from ..response.schema import ApiResponse
+from response.schema import ApiResponse
     
 def create_user(request: User2, db: Session):
-    users = db.query(models.User).filter(models.User.username == request.username).first() 
+    users = db.query(User).filter(User.username == request.username).first() 
     if users:
         return ApiResponse(
             message = f"User already exist" ,
             statusCode =  status.HTTP_409_CONFLICT ,
             datalist = []
         )
-    new_user = models.User(
+    new_user = User(
         username=request.username,
         email=request.email,                                                                                                         
         password=Hasing.hashPassword(request.password),
@@ -36,7 +36,7 @@ def create_user(request: User2, db: Session):
     
     
 def show_all_user(db : Session):
-    users =  db.query(models.User).all() 
+    users =  db.query(User).all() 
     user = [showUser.from_orm(u) for u in users]
     if not user:
         return ApiResponse(
@@ -51,7 +51,7 @@ def show_all_user(db : Session):
     )
 
 def show_user_by_id(id : int  , db : Session):
-    users = db.query(models.User).filter(models.User.id == id).first() 
+    users = db.query(User).filter(User.id == id).first() 
     if users is None:
         return ApiResponse(
             message = f"User with id {id} not found"  ,
