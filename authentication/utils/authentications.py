@@ -5,7 +5,7 @@ from fastapi import APIRouter , Depends , HTTPException , status , Request
 from sqlalchemy.orm import Session 
 from database import get_db 
 from .hasing import Hasing
-from schemas import Login
+from schemas import Login , RefreshTokenSchema
 from .token import create_access_token , create_refresh_token , decode_token
 from fastapi.security import OAuth2PasswordRequestForm
 import os 
@@ -43,19 +43,17 @@ def login(request:Login, db : Session = Depends(get_db)):
 
 # Making access_token using refresh_token 
 
-# @router.post("/refresh-token")
-# async def refresh_token(request : Request):
-#     body = await request.json()
-#     token = body["refresh_token"] 
+@router.post("/refresh-token")
+def refresh_token(request : RefreshTokenSchema):
+    token = request.refresh_token
+    if not token:
+       raise HTTPException(status_code=400, detail="Refresh token missing")
     
-#     if not token:
-#        raise HTTPException(status_code=400, detail="Refresh token missing")
+    payload = decode_token(token)
+    if not payload or payload.get("type") != "refresh":
+        raise HTTPException(status_code=401, detail="Invalid or expired refresh token")
     
-#     payload = decode_token(token)
-#     if not payload or payload.get("type") != "refresh":
-#         raise HTTPException(status_code=401, detail="Invalid or expired refresh token")
-    
-#     access_token_expires = timedelta(minutes=int(ACCESS_TOKEN_EXPIRE_MINUTES))
-#     access_token = create_access_token(payload, access_token_expires)
+    access_token_expires = timedelta(minutes=int(ACCESS_TOKEN_EXPIRE_MINUTES))
+    access_token = create_access_token(payload, access_token_expires)
 
-#     return {"access_token": access_token, "token_type": "bearer"}
+    return {"access_token": access_token, "token_type": "bearer"}

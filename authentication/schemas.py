@@ -31,4 +31,5 @@ class Token(BaseModel):
     token_type: str
 
 
-
+class RefreshTokenSchema(BaseModel):
+    refresh_token: str

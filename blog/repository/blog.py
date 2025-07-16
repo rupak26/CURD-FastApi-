@@ -2,13 +2,17 @@ from  sqlalchemy.orm import Session
 from ..domain import models
 from typing import List
 from ..domain.schemas import BLog2 , User2 , showBlog , showUser , BLogPatch 
-from fastapi import  status , Response , HTTPException , APIRouter
+from fastapi import  status , Response , HTTPException , APIRouter , Query , Depends
 from ..socket.configuration import manager
 from ..response.schema import ApiResponse 
 import logging 
 logger = logging.getLogger("repository.blog")
 
-def get_all(db : Session):
+def get_all(
+            db : Session , 
+            # limit: int = Query(10),  
+            # offset: int = Query(0),  
+    ):
     try:
         datalist = db.query(models.Blog).all() 
         blogs = [showBlog.from_orm(blog) for blog in datalist]
