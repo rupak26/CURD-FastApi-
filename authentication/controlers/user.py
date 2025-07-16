@@ -10,7 +10,7 @@ from repository import user
 from response.schema import ApiResponse
 
 router = APIRouter(
-    prefix= '/api/v1/auth/user',
+    prefix= '/api/v1/auth',
     tags=['User'] 
 ) 
 

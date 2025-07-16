@@ -6,7 +6,7 @@ api_gateway/__init__.py
 api_gateway/__main__.py
 api_gateway/api_gateway-venv
 api_gateway/routers/__init__.py
-api_gateway/api-gateway-venv
+api_gateway/api-venv
 
 authentication/__init__.py
 authentication/__main__.py

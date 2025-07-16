@@ -7,6 +7,7 @@ from  sqlalchemy.orm import Session
 from  typing import List , Any
 from ..repository import blog
 from ..core import swagger_doc as s 
+from ..core.dependencies import get_current_user
 from ..response.schema import ApiResponse
 import logging 
 
@@ -16,18 +17,18 @@ logger = logging.getLogger("routers.blog")
 router = APIRouter(
     prefix='/api/v1/blog' ,
     tags=['Blogs'] ,
+    dependencies= [Depends(get_current_user)]
 )
 
-
-@router.post('/creste_post/' ,
+@router.post('/create_post/' ,
               summary="Create new blog",
               description=s.blog_desc, 
               status_code= status.HTTP_201_CREATED)
-async def create(request:BLog2 , db : Session = Depends(get_db)):
+async def create(request:BLog2 , db : Session = Depends(get_db) ,  user: dict = Depends(get_current_user) ):
     logger.info(f"API call: POST /blog/")
-    return await blog.create(request , db )
+    return await blog.create(request , db , user['user_id'])
 
-# Customize request_model via using response schema 
+
 @router.get('/get_all_blogs/' ,
             summary="Get all Blog",
             description='''
