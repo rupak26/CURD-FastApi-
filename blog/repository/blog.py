@@ -5,17 +5,29 @@ from ..domain.schemas import BLog2 , User2 , showBlog , showUser , BLogPatch
 from fastapi import  status , Response , HTTPException , APIRouter , Query , Depends
 from ..socket.configuration import manager
 from ..response.schema import ApiResponse 
-import logging 
+import logging , json
 logger = logging.getLogger("repository.blog")
 
 def get_all(
             db : Session , 
-            # limit: int = Query(10),  
-            # offset: int = Query(0),  
+            redis_client ,
+            limit,  
+            offset,  
     ):
     try:
-        datalist = db.query(models.Blog).all() 
+        cache_key = f"get_all_blogs:limit={limit}:offset={offset}"
+        cached_data = redis_client.get(cache_key)
+        if cached_data:
+            data = json.loads(cached_data)
+            return ApiResponse(
+                message="Fetched from cache",
+                statusCode=200,
+                datalist=data
+            )
+        
+        datalist = db.query(models.Blog).offset(offset).limit(limit).all() 
         blogs = [showBlog.from_orm(blog) for blog in datalist]
+    
         if not blogs:
             logger.error(f"Database is empty")
             return ApiResponse(
@@ -23,6 +35,11 @@ def get_all(
                 statusCode =  204 ,
                 datalist = []
             )
+        
+        #SET AND EXPIRES in ONE FNCTION "setex"
+
+        redis_client.setex(cache_key, 300, json.dumps([blog.dict() for blog in blogs])) 
+        
         return ApiResponse(
             message = "Fatching was successfull" ,
             statusCode = 200,

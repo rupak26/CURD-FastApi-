@@ -1,26 +1,72 @@
-2025-07-16 10:32:29,328 | repository.blog | ERROR | 1 is Not found
-2025-07-16 10:32:34,726 | repository.blog | ERROR | 2 is Not found
-2025-07-16 15:08:28,519 | repository.blog | ERROR | int() argument must be a string, a bytes-like object or a real number, not 'Query'
-2025-07-16 15:08:28,520 | database | ERROR | DB session error: 1 validation errors:
+2025-07-19 09:40:34,589 | repository.blog | ERROR | int() argument must be a string, a bytes-like object or a real number, not 'Query'
+2025-07-19 09:40:34,593 | database | ERROR | DB session error: 1 validation errors:
   {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
 
-2025-07-16 15:12:20,320 | repository.blog | ERROR | int() argument must be a string, a bytes-like object or a real number, not 'Query'
-2025-07-16 15:12:20,321 | database | ERROR | DB session error: 1 validation errors:
+2025-07-19 09:46:53,375 | repository.blog | ERROR | int() argument must be a string, a bytes-like object or a real number, not 'Query'
+2025-07-19 09:46:53,376 | database | ERROR | DB session error: 1 validation errors:
   {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
 
-2025-07-16 15:12:27,729 | repository.blog | ERROR | int() argument must be a string, a bytes-like object or a real number, not 'Query'
-2025-07-16 15:12:27,730 | database | ERROR | DB session error: 1 validation errors:
+2025-07-19 09:48:15,919 | repository.blog | ERROR | int() argument must be a string, a bytes-like object or a real number, not 'Query'
+2025-07-19 09:48:15,920 | database | ERROR | DB session error: 1 validation errors:
   {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
 
-2025-07-16 15:15:06,913 | repository.blog | ERROR | int() argument must be a string, a bytes-like object or a real number, not 'Query'
-2025-07-16 15:15:06,913 | database | ERROR | DB session error: 1 validation errors:
+2025-07-19 09:48:16,796 | repository.blog | ERROR | int() argument must be a string, a bytes-like object or a real number, not 'Query'
+2025-07-19 09:48:16,796 | database | ERROR | DB session error: 1 validation errors:
   {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
 
-2025-07-16 15:16:14,122 | repository.blog | ERROR | int() argument must be a string, a bytes-like object or a real number, not 'Query'
-2025-07-16 15:16:14,123 | database | ERROR | DB session error: 1 validation errors:
+2025-07-19 09:50:58,890 | repository.blog | ERROR | int() argument must be a string, a bytes-like object or a real number, not 'Query'
+2025-07-19 09:50:58,891 | database | ERROR | DB session error: 1 validation errors:
   {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
 
-2025-07-16 15:29:20,157 | repository.blog | ERROR | int() argument must be a string, a bytes-like object or a real number, not 'Query'
-2025-07-16 15:29:20,158 | database | ERROR | DB session error: 1 validation errors:
+2025-07-19 09:52:54,197 | repository.blog | ERROR | int() argument must be a string, a bytes-like object or a real number, not 'Query'
+2025-07-19 09:52:54,198 | database | ERROR | DB session error: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
+
+2025-07-19 09:53:42,104 | repository.blog | ERROR | int() argument must be a string, a bytes-like object or a real number, not 'Query'
+2025-07-19 09:53:42,104 | database | ERROR | DB session error: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
+
+2025-07-19 09:57:09,324 | repository.blog | ERROR | int() argument must be a string, a bytes-like object or a real number, not 'Query'
+2025-07-19 09:57:09,324 | database | ERROR | DB session error: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
+
+2025-07-19 11:01:07,324 | repository.blog | ERROR | Object of type showBlog is not JSON serializable
+2025-07-19 11:01:07,325 | database | ERROR | DB session error: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
+
+2025-07-19 11:23:17,914 | repository.blog | ERROR | Object of type showBlog is not JSON serializable
+2025-07-19 11:23:17,914 | database | ERROR | DB session error: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
+
+2025-07-19 11:23:31,024 | repository.blog | ERROR | Object of type showBlog is not JSON serializable
+2025-07-19 11:23:31,024 | database | ERROR | DB session error: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
+
+2025-07-19 11:23:43,168 | repository.blog | ERROR | Object of type showBlog is not JSON serializable
+2025-07-19 11:23:43,168 | database | ERROR | DB session error: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
+
+2025-07-19 11:25:20,816 | repository.blog | ERROR | Object of type showBlog is not JSON serializable
+2025-07-19 11:25:20,817 | database | ERROR | DB session error: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
+
+2025-07-19 11:33:56,531 | repository.blog | ERROR | Object of type showBlog is not JSON serializable
+2025-07-19 11:33:56,531 | database | ERROR | DB session error: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
+
+2025-07-19 11:34:41,077 | repository.blog | ERROR | Object of type showBlog is not JSON serializable
+2025-07-19 11:34:41,078 | database | ERROR | DB session error: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
+
+2025-07-19 11:35:26,363 | repository.blog | ERROR | Object of type showBlog is not JSON serializable
+2025-07-19 11:35:26,364 | database | ERROR | DB session error: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
+
+2025-07-19 11:38:39,398 | repository.blog | ERROR | Object of type showBlog is not JSON serializable
+2025-07-19 11:38:39,399 | database | ERROR | DB session error: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
+
+2025-07-19 11:39:30,234 | repository.blog | ERROR | Object of type showBlog is not JSON serializable
+2025-07-19 11:39:30,234 | database | ERROR | DB session error: 1 validation errors:
   {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
 

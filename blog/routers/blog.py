@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI , status , Response , HTTPException , APIRouter
+from fastapi import Depends, FastAPI , status , Response , HTTPException , APIRouter , Query
 from ..domain.schemas import BLog2 , User2 , showBlog , showUser , BLogPatch 
 from ..domain import models
 from ..Database import engine , SessionLocal , get_db
@@ -7,6 +7,7 @@ from  sqlalchemy.orm import Session
 from  typing import List , Any
 from ..repository import blog
 from ..core import swagger_doc as s 
+from ..core.redis import get_redis_client
 from ..core.dependencies import get_current_user
 from ..response.schema import ApiResponse
 import logging 
@@ -35,9 +36,14 @@ async def create(request:BLog2 , db : Session = Depends(get_db) ,  user: dict = 
             Get all Blogs from Database
             ''',
             status_code= status.HTTP_200_OK, response_model = ApiResponse)
-def details(db : Session = Depends(get_db)):
+def details(
+            db : Session = Depends(get_db),
+            redis_client=Depends(get_redis_client),
+            limit: int = Query(ge=10),  
+            offset: int = Query(ge=0)
+    ):
     logger.info(f"API call: GET /blog/")
-    return blog.get_all(db)
+    return blog.get_all(db,redis_client,limit,offset)
 
 
 @router.get('/get_blog/{id}' ,

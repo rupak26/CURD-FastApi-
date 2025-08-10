@@ -26,10 +26,19 @@ class Login(BaseModel):
      password : str 
 
 
-class Token(BaseModel):
+class TokenData(BaseModel):
     access_token: str
+    refresh_token: str
     token_type: str
-
+    expires_in: int
+    time : str
 
 class RefreshTokenSchema(BaseModel):
     refresh_token: str
+    
+class RefreshTokenResponse(BaseModel):
+    access_token: str
+    token_type: str
+    expires_in: int
+    time : str
+    

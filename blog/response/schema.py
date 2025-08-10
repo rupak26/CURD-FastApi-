@@ -7,5 +7,5 @@ class ApiResponse(BaseModel):
     statusCode: Optional[int] = None
     datalist: Optional[Any] = None
 
-    class config:
+    class Config:
         orm_mode = True
